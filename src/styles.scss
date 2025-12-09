@@ -1,0 +1,9 @@
+@use "bootstrap/dist/css/bootstrap.min.css";
+@use "primeicons/primeicons.css" as *;
+
+/* Global styles */
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+}
