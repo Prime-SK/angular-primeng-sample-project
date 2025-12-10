@@ -1,0 +1,85 @@
+.client-form-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
+
+    &.required-field::after {
+      content: " *";
+      color: #ef4444;
+    }
+  }
+
+  input,
+  p-dropdown,
+  p-calendar,
+  p-inputNumber {
+    width: 100%;
+  }
+
+  &.checkbox-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+  }
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+  min-height: 1.25rem;
+}
+
+.ng-invalid.ng-touched {
+  border-color: #ef4444 !important;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--surface-border);
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .client-form-container {
+    padding: 0.5rem;
+    margin: 1rem auto;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+
+    p-button {
+      width: 100%;
+    }
+  }
+}

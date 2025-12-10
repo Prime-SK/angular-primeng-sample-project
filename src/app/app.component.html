@@ -1,2 +1,10 @@
-<h1 class="p-2">{{ title }}</h1>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title }}</h1>
+  </header>
+  
+  <main class="app-main">
+    <app-client-form></app-client-form>
+    <router-outlet></router-outlet>
+  </main>
+</div>

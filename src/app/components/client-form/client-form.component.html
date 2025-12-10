@@ -1,0 +1,152 @@
+<div class="client-form-container">
+  <p-card header="Client Registration Form">
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="p-fluid">
+      <div class="form-grid">
+        <!-- Name Field -->
+        <div class="field">
+          <label for="name" class="required-field">Name</label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            formControlName="name"
+            placeholder="Enter client name"
+            [class.ng-invalid]="f['name'].invalid && f['name'].touched"
+          />
+          <small class="error-message" *ngIf="f['name'].invalid && f['name'].touched">
+            <span *ngIf="f['name'].errors?.['required']">Name is required.</span>
+            <span *ngIf="f['name'].errors?.['minlength']">Name must be at least 2 characters.</span>
+          </small>
+        </div>
+
+        <!-- Email Field -->
+        <div class="field">
+          <label for="email" class="required-field">Email</label>
+          <input
+            id="email"
+            type="email"
+            pInputText
+            formControlName="email"
+            placeholder="Enter email address"
+            [class.ng-invalid]="f['email'].invalid && f['email'].touched"
+          />
+          <small class="error-message" *ngIf="f['email'].invalid && f['email'].touched">
+            <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+            <span *ngIf="f['email'].errors?.['email']">Please enter a valid email.</span>
+          </small>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="field">
+          <label for="phone" class="required-field">Phone</label>
+          <input
+            id="phone"
+            type="text"
+            pInputText
+            formControlName="phone"
+            placeholder="Enter phone number"
+            [class.ng-invalid]="f['phone'].invalid && f['phone'].touched"
+          />
+          <small class="error-message" *ngIf="f['phone'].invalid && f['phone'].touched">
+            <span *ngIf="f['phone'].errors?.['required']">Phone is required.</span>
+            <span *ngIf="f['phone'].errors?.['pattern']">Phone must be 10-15 digits.</span>
+          </small>
+        </div>
+
+        <!-- Client Type Dropdown -->
+        <div class="field">
+          <label for="clientType" class="required-field">Client Type</label>
+          <p-dropdown
+            id="clientType"
+            [options]="clientTypes"
+            formControlName="clientType"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Select client type"
+            [class.ng-invalid]="f['clientType'].invalid && f['clientType'].touched"
+          ></p-dropdown>
+          <small class="error-message" *ngIf="f['clientType'].invalid && f['clientType'].touched">
+            <span *ngIf="f['clientType'].errors?.['required']">Client type is required.</span>
+          </small>
+        </div>
+
+        <!-- Bank Balance Field -->
+        <div class="field">
+          <label for="bankBalance" class="required-field">Bank Balance</label>
+          <p-inputNumber
+            id="bankBalance"
+            formControlName="bankBalance"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+            [class.ng-invalid]="f['bankBalance'].invalid && f['bankBalance'].touched"
+          ></p-inputNumber>
+          <small class="error-message" *ngIf="f['bankBalance'].invalid && f['bankBalance'].touched">
+            <span *ngIf="f['bankBalance'].errors?.['required']">Bank balance is required.</span>
+            <span *ngIf="f['bankBalance'].errors?.['min']">Bank balance must be positive.</span>
+          </small>
+        </div>
+
+        <!-- Outstanding Loan Field -->
+        <div class="field">
+          <label for="outstandingLoan" class="required-field">Outstanding Loan</label>
+          <p-inputNumber
+            id="outstandingLoan"
+            formControlName="outstandingLoan"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+            [class.ng-invalid]="f['outstandingLoan'].invalid && f['outstandingLoan'].touched"
+          ></p-inputNumber>
+          <small class="error-message" *ngIf="f['outstandingLoan'].invalid && f['outstandingLoan'].touched">
+            <span *ngIf="f['outstandingLoan'].errors?.['required']">Outstanding loan is required.</span>
+            <span *ngIf="f['outstandingLoan'].errors?.['min']">Outstanding loan must be positive.</span>
+          </small>
+        </div>
+
+        <!-- Registration Date Field -->
+        <div class="field">
+          <label for="registrationDate" class="required-field">Registration Date</label>
+          <p-calendar
+            id="registrationDate"
+            formControlName="registrationDate"
+            [showIcon]="true"
+            dateFormat="mm/dd/yy"
+            placeholder="Select date"
+            [class.ng-invalid]="f['registrationDate'].invalid && f['registrationDate'].touched"
+          ></p-calendar>
+          <small class="error-message" *ngIf="f['registrationDate'].invalid && f['registrationDate'].touched">
+            <span *ngIf="f['registrationDate'].errors?.['required']">Registration date is required.</span>
+          </small>
+        </div>
+
+        <!-- Is Active Checkbox -->
+        <div class="field checkbox-field">
+          <p-checkbox
+            id="isActive"
+            formControlName="isActive"
+            [binary]="true"
+            label="Is Active"
+          ></p-checkbox>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <p-button
+          label="Submit"
+          icon="pi pi-check"
+          type="submit"
+          [disabled]="clientForm.invalid"
+        ></p-button>
+        <p-button
+          label="Reset"
+          icon="pi pi-refresh"
+          type="button"
+          severity="secondary"
+          (onClick)="onReset()"
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
+</div>
