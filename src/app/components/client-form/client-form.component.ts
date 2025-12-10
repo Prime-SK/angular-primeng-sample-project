@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ToastModule } from 'primeng/toast';
 
 interface ClientType {
   label: string;
@@ -44,6 +45,7 @@ interface Client {
     InputNumberModule,
     FloatLabelModule,
     SelectModule,
+    ToastModule
   ],
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.scss'
