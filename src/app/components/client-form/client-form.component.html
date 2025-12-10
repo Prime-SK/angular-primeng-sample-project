@@ -3,8 +3,8 @@
     <form [formGroup]="clientForm" (ngSubmit)="handleFormSubmit()" class="p-fluid">
       <div class="form-grid">
         <!-- Name Field -->
-        <p-floatlabel variant="on">
         <div class="field">
+        <p-floatlabel variant="on">
           <label for="name">Name *</label>
           <input
             id="name"
@@ -14,15 +14,15 @@
             [class.ng-invalid]="isFieldInvalid('name')"
             [class.ng-dirty]="isFieldInvalid('name')"
           />
-          <small class="error-message" *ngIf="isFieldInvalid('name')">
-            {{ getErrorMessage('name') }}
-          </small>
-        </div>
         </p-floatlabel>
+        <small class="error-message" *ngIf="isFieldInvalid('name')">
+          {{ getErrorMessage('name') }}
+        </small>
+      </div>
 
         <!-- Email Field -->
-        <p-floatlabel variant="on">
         <div class="field">
+        <p-floatlabel variant="on">
           <label for="email">Email *</label>
           <input
             id="email"
@@ -32,15 +32,15 @@
             [class.ng-invalid]="isFieldInvalid('email')"
             [class.ng-dirty]="isFieldInvalid('email')"
           />
+        </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('email')">
             {{ getErrorMessage('email') }}
           </small>
         </div>
-        </p-floatlabel>
 
         <!-- Phone Field -->
-        <p-floatlabel variant="on">
         <div class="field">
+        <p-floatlabel variant="on">
           <label for="phone">Phone *</label>
           <input
             id="phone"
@@ -50,33 +50,32 @@
             [class.ng-invalid]="isFieldInvalid('phone')"
             [class.ng-dirty]="isFieldInvalid('phone')"
           />
+        </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('phone')">
             {{ getErrorMessage('phone') }}
           </small>
         </div>
-        </p-floatlabel>
 
         <!-- Client Type Dropdown -->
-					<p-floatlabel class="w-full md:w-56" variant="on">
-						<div class="field">
+        <div class="field">
+          <p-floatlabel class="w-full md:w-56" variant="on">
 						<p-select 
 						inputId="clientType" 
 						[options]="clientTypes" 
 						formControlName="clientType"
 						optionLabel="label" 
 						optionValue="value"
-						[style]="{'width':'50%'}" 
 						/>
 						<label for="clientType">Client Type *</label>
-          <small class="error-message" *ngIf="isFieldInvalid('clientType')">
-            {{ getErrorMessage('clientType') }}
-          </small>
-					</div>
-				</p-floatlabel>
+          </p-floatlabel>
+            <small class="error-message" *ngIf="isFieldInvalid('clientType')">
+              {{ getErrorMessage('clientType') }}
+            </small>
+        </div>
 
         <!-- Bank Balance Field -->
-        <p-floatlabel variant="on">
         <div class="field">
+          <p-floatlabel variant="on">
             <p-inputNumber
             inputId="bankBalance"
             formControlName="bankBalance"
@@ -85,15 +84,15 @@
             locale="en-US"
             />
             <label for="bankBalance">Bank Balance *</label>
+          </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
             {{ getErrorMessage('bankBalance') }}
           </small>
         </div>
-        </p-floatlabel>
 
         <!-- Outstanding Loan Field -->
-        <p-floatlabel variant="on">
-        	<div class="field">
+        <div class="field">
+          <p-floatlabel variant="on">
             <p-inputNumber
             inputId="outstandingLoan"
             formControlName="outstandingLoan"
@@ -102,15 +101,15 @@
             locale="en-US"
             />
             <label for="outstandingLoan">Outstanding Loan</label>
+          </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
             {{ getErrorMessage('outstandingLoan') }}
           </small>
-        	</div>
-        </p-floatlabel>
+        </div>
 
         <!-- Registration Date Field -->
-				<p-floatlabel variant="on">
-        	<div class="field">
+        <div class="field">
+				  <p-floatlabel variant="on">
             <p-datepicker  
               inputId="registrationDate" 
               formControlName="registrationDate"
@@ -119,21 +118,21 @@
               dateFormat="dd/mm/yy"
             />
             <label for="registrationDate">Registration Date *</label>
+          </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
             {{ getErrorMessage('registrationDate') }}
           </small>
-					</div>
-				</p-floatlabel>
+        </div>
 
         <!-- Is Active Checkbox -->
         <div class="field checkbox-field">
+          <label for="isActive" style="margin: 0 10px 0 0;">Active</label>
           <p-checkbox
             inputId="isActive"
             formControlName="isActive"
             [binary]="true"
             label="Is Active"
           />
-					<label for="isActive">Active</label>
         </div>
       </div>
 

@@ -61,12 +61,12 @@ export class ClientFormComponent {
   clientForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
     bankBalance: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
     outstandingLoan: new FormControl<number | null>(null, [Validators.min(0)]),
     clientType: new FormControl<string | null>(null, [Validators.required]),
     isActive: new FormControl(false),
-    registrationDate: new FormControl<Date | null>(new Date(), [Validators.required])
+    registrationDate: new FormControl<Date | null>(null, [Validators.required])
   });
 
   handleFormSubmit() {
@@ -98,7 +98,7 @@ export class ClientFormComponent {
     }
     if (control.errors['pattern']) {
       if (fieldName === 'phone') {
-        return 'Phone number must be exactly 10 digits';
+        return 'Phone number must begin with 07 and be exactly 10 digits';
       }
     }
     if (control.errors['min']) {
