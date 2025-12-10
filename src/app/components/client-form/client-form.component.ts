@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -18,7 +17,6 @@ interface ClientType {
   selector: 'app-client-form',
   standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     InputTextModule,
     DropdownModule,
@@ -31,64 +29,33 @@ interface ClientType {
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.scss'
 })
-export class ClientFormComponent implements OnInit {
-  clientForm!: FormGroup;
-  clientTypes: ClientType[] = [];
+export class ClientFormComponent {
+  clientTypes: ClientType[] = [
+    { label: 'Individual', value: 'individual' },
+    { label: 'Business', value: 'business' }
+  ];
 
-  constructor(private fb: FormBuilder) {}
+  clientForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    bankBalance: new FormControl(0),
+    outstandingLoan: new FormControl(0),
+    clientType: new FormControl(null),
+    isActive: new FormControl(false),
+    registrationDate: new FormControl(new Date())
+  });
 
-  ngOnInit(): void {
-    this.initializeForm();
-    this.initializeClientTypes();
+  handleFormSubmit() {
+    console.log('Form Submitted:', this.clientForm.value);
   }
 
-  initializeForm(): void {
-    this.clientForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10,15}$/)]],
-      bankBalance: [0, [Validators.required, Validators.min(0)]],
-      outstandingLoan: [0, [Validators.required, Validators.min(0)]],
-      clientType: [null, Validators.required],
-      isActive: [false],
-      registrationDate: [new Date(), Validators.required]
-    });
-  }
-
-  initializeClientTypes(): void {
-    this.clientTypes = [
-      { label: 'Individual', value: 'individual' },
-      { label: 'Business', value: 'business' }
-    ];
-  }
-
-  onSubmit(): void {
-    if (this.clientForm.valid) {
-      console.log('Form Submitted:', this.clientForm.value);
-      // Handle form submission logic here
-    } else {
-      console.log('Form is invalid');
-      this.markFormGroupTouched(this.clientForm);
-    }
-  }
-
-  onReset(): void {
+  handleReset() {
     this.clientForm.reset({
       bankBalance: 0,
       outstandingLoan: 0,
       isActive: false,
       registrationDate: new Date()
     });
-  }
-
-  private markFormGroupTouched(formGroup: FormGroup): void {
-    Object.keys(formGroup.controls).forEach(key => {
-      const control = formGroup.get(key);
-      control?.markAsTouched();
-    });
-  }
-
-  get f() {
-    return this.clientForm.controls;
   }
 }
