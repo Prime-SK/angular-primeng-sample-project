@@ -1,5 +1,5 @@
 <p-table 
-  [value]="clients" 
+  [value]="clientEntries" 
 	[tableStyle]="{ 'min-width': '50rem' }"
 	[paginator]="true"
 	[rows]="5"
@@ -25,7 +25,7 @@
             <td>{{ client.clientType }}</td>
             <td>{{ client.bankBalance }}</td>
             <td>{{ client.outstandingLoan }}</td>
-            <td>{{ client.registrationDate }}</td>
+            <td>{{ client.registrationDate | date:'dd/MM/yyyy'  }}</td>
             <td>{{ client.isActive ? 'Active' : 'Inactive' }}</td>
         </tr>
     </ng-template>

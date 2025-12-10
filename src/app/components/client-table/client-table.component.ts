@@ -1,37 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 
 interface Client {
-  name: string;
-  email: string;
-  phone: string;
-  bankBalance: number;
-  outstandingLoan: number;
-  clientType: string;
-  registrationDate: Date;
-  isActive: boolean;
+  name: string | null;
+  email: string | null;
+  phone: string | null;
+  bankBalance: number | null;
+  outstandingLoan: number | null;
+  clientType: null | string;
+  registrationDate: Date | null;
+  isActive: boolean | null;
 }
 
 @Component({
   selector: 'app-client-table',
   standalone: true,
   imports: [
-    TableModule
+    TableModule,
+    CommonModule
   ],
   templateUrl: './client-table.component.html',
   styleUrl: './client-table.component.scss'
 })
 export class ClientTableComponent {
-  clients: Client[] = [
-    { 
-      name: 'John Doe', 
-      email: 'blah@example.com', 
-      phone: '123-456-7890', 
-      bankBalance: 5000, 
-      outstandingLoan: 1500, 
-      clientType: 'individual', 
-      registrationDate: new Date('2022-01-15'),
-      isActive: true, 
-    },
-  ];
+  @Input() clientEntries: Client[] = [];
 }

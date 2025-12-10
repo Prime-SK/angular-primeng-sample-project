@@ -12,6 +12,12 @@ import { ClientTableComponent } from './components/client-table/client-table.com
 })
 export class AppComponent {
   title = 'Angular & PrimeNG Sample Project';
+  clients: any[] = [];
 
   constructor() {}
+
+  onClientSubmitted(client: any): void {
+    this.clients.push(client);
+    console.log('All Clients:', this.clients);
+  }
 }

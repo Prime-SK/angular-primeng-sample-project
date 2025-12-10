@@ -5,39 +5,54 @@
         <!-- Name Field -->
         <p-floatlabel variant="on">
         <div class="field">
-          <label for="name">Name</label>
+          <label for="name">Name *</label>
           <input
             id="name"
             type="text"
             pInputText
             formControlName="name"
+            [class.ng-invalid]="isFieldInvalid('name')"
+            [class.ng-dirty]="isFieldInvalid('name')"
           />
+          <small class="error-message" *ngIf="isFieldInvalid('name')">
+            {{ getErrorMessage('name') }}
+          </small>
         </div>
         </p-floatlabel>
 
         <!-- Email Field -->
         <p-floatlabel variant="on">
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">Email *</label>
           <input
             id="email"
             type="email"
             pInputText
             formControlName="email"
+            [class.ng-invalid]="isFieldInvalid('email')"
+            [class.ng-dirty]="isFieldInvalid('email')"
           />
+          <small class="error-message" *ngIf="isFieldInvalid('email')">
+            {{ getErrorMessage('email') }}
+          </small>
         </div>
         </p-floatlabel>
 
         <!-- Phone Field -->
         <p-floatlabel variant="on">
         <div class="field">
-          <label for="phone">Phone</label>
+          <label for="phone">Phone *</label>
           <input
             id="phone"
             type="text"
             pInputText
             formControlName="phone"
+            [class.ng-invalid]="isFieldInvalid('phone')"
+            [class.ng-dirty]="isFieldInvalid('phone')"
           />
+          <small class="error-message" *ngIf="isFieldInvalid('phone')">
+            {{ getErrorMessage('phone') }}
+          </small>
         </div>
         </p-floatlabel>
 
@@ -52,7 +67,10 @@
 						optionValue="value"
 						[style]="{'width':'50%'}" 
 						/>
-						<label for="clientType">Client Type</label>
+						<label for="clientType">Client Type *</label>
+          <small class="error-message" *ngIf="isFieldInvalid('clientType')">
+            {{ getErrorMessage('clientType') }}
+          </small>
 					</div>
 				</p-floatlabel>
 
@@ -66,7 +84,10 @@
             currency="USD"
             locale="en-US"
             />
-            <label for="bankBalance">Bank Balance</label>
+            <label for="bankBalance">Bank Balance *</label>
+          <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
+            {{ getErrorMessage('bankBalance') }}
+          </small>
         </div>
         </p-floatlabel>
 
@@ -81,6 +102,9 @@
             locale="en-US"
             />
             <label for="outstandingLoan">Outstanding Loan</label>
+          <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
+            {{ getErrorMessage('outstandingLoan') }}
+          </small>
         	</div>
         </p-floatlabel>
 
@@ -89,11 +113,15 @@
         	<div class="field">
             <p-datepicker  
               inputId="registrationDate" 
+              formControlName="registrationDate"
               showIcon 
               iconDisplay="input"
               dateFormat="dd/mm/yy"
             />
-            <label for="registrationDate">Registration Date</label>
+            <label for="registrationDate">Registration Date *</label>
+          <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
+            {{ getErrorMessage('registrationDate') }}
+          </small>
 					</div>
 				</p-floatlabel>
 
@@ -115,6 +143,7 @@
           label="Submit"
           icon="pi pi-check"
           type="submit"
+          [disabled]="clientForm.invalid"
         ></p-button>
         <p-button
           label="Reset"

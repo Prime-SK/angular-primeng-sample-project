@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectModule } from 'primeng/select';
@@ -31,6 +32,7 @@ interface Client {
   selector: 'app-client-form',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     InputTextModule,
     DropdownModule,
@@ -47,7 +49,7 @@ interface Client {
   styleUrl: './client-form.component.scss'
 })
 export class ClientFormComponent {
-  clients: Client[] = [];
+  @Output() clientSubmitted = new EventEmitter<Client>();
 
   clientTypes: ClientType[] = [
     { label: 'Individual', value: 'individual' },
@@ -55,31 +57,69 @@ export class ClientFormComponent {
   ];
 
   clientForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    phone: new FormControl(''),
-    bankBalance: new FormControl(),
-    outstandingLoan: new FormControl(),
-    clientType: new FormControl(null),
+    name: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    bankBalance: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
+    outstandingLoan: new FormControl<number | null>(null, [Validators.min(0)]),
+    clientType: new FormControl<string | null>(null, [Validators.required]),
     isActive: new FormControl(false),
-    registrationDate: new FormControl(new Date())
+    registrationDate: new FormControl<Date | null>(new Date(), [Validators.required])
   });
 
   handleFormSubmit() {
     if (this.clientForm.valid) {
-      this.clients.push(this.clientForm.value as Client);
+      this.clientSubmitted.emit(this.clientForm.value as Client);
       console.log('Form Submitted:', this.clientForm.value);
-      console.log('All Clients:', this.clients);
       this.handleReset();
     }
   }
 
   handleReset() {
     this.clientForm.reset({
-      // bankBalance: 0,
-      // outstandingLoan: 0,
-      // isActive: false,
+      isActive: false,
       registrationDate: new Date()
     });
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const control = this.clientForm.get(fieldName);
+    if (!control || !control.errors || !control.touched) {
+      return '';
+    }
+
+    if (control.errors['required']) {
+      return `${this.getFieldLabel(fieldName)} is required`;
+    }
+    if (control.errors['email']) {
+      return 'Please enter a valid email address';
+    }
+    if (control.errors['pattern']) {
+      if (fieldName === 'phone') {
+        return 'Phone number must be exactly 10 digits';
+      }
+    }
+    if (control.errors['min']) {
+      return `${this.getFieldLabel(fieldName)} must be a positive number`;
+    }
+    return '';
+  }
+
+  private getFieldLabel(fieldName: string): string {
+    const labels: { [key: string]: string } = {
+      name: 'Name',
+      email: 'Email',
+      phone: 'Phone',
+      bankBalance: 'Bank Balance',
+      outstandingLoan: 'Outstanding Loan',
+      clientType: 'Client Type',
+      registrationDate: 'Registration Date'
+    };
+    return labels[fieldName] || fieldName;
+  }
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.clientForm.get(fieldName);
+    return !!(control && control.invalid && control.touched);
   }
 }

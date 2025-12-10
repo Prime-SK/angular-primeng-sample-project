@@ -4,8 +4,8 @@
   </header>
   
   <main class="app-main">
-    <app-client-form></app-client-form>
-    <app-client-table></app-client-table>
+    <app-client-form (clientSubmitted)="onClientSubmitted($event)"></app-client-form>
+    <app-client-table [clientEntries]="clients"></app-client-table>
     <router-outlet></router-outlet>
   </main>
 </div>
