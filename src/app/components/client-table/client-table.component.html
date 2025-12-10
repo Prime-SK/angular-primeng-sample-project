@@ -1,0 +1,32 @@
+<p-table 
+  [value]="clients" 
+	[tableStyle]="{ 'min-width': '50rem' }"
+	[paginator]="true"
+	[rows]="5"
+	[rowsPerPageOptions]="[5, 10, 20]"
+	>
+    <ng-template #header>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Type</th>
+            <th>Balance</th>
+            <th>Overdraft</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-client>
+        <tr>
+            <td>{{ client.name }}</td>
+            <td>{{ client.email }}</td>
+            <td>{{ client.phone }}</td>
+            <td>{{ client.clientType }}</td>
+            <td>{{ client.bankBalance }}</td>
+            <td>{{ client.outstandingLoan }}</td>
+            <td>{{ client.registrationDate }}</td>
+            <td>{{ client.isActive ? 'Active' : 'Inactive' }}</td>
+        </tr>
+    </ng-template>
+</p-table>

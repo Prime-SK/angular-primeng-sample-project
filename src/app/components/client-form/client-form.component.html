@@ -3,6 +3,7 @@
     <form [formGroup]="clientForm" (ngSubmit)="handleFormSubmit()" class="p-fluid">
       <div class="form-grid">
         <!-- Name Field -->
+        <p-floatlabel variant="on">
         <div class="field">
           <label for="name">Name</label>
           <input
@@ -10,11 +11,12 @@
             type="text"
             pInputText
             formControlName="name"
-            placeholder="Enter client name"
           />
         </div>
+        </p-floatlabel>
 
         <!-- Email Field -->
+        <p-floatlabel variant="on">
         <div class="field">
           <label for="email">Email</label>
           <input
@@ -22,11 +24,12 @@
             type="email"
             pInputText
             formControlName="email"
-            placeholder="Enter email address"
           />
         </div>
+        </p-floatlabel>
 
         <!-- Phone Field -->
+        <p-floatlabel variant="on">
         <div class="field">
           <label for="phone">Phone</label>
           <input
@@ -34,67 +37,75 @@
             type="text"
             pInputText
             formControlName="phone"
-            placeholder="Enter phone number"
           />
         </div>
+        </p-floatlabel>
 
         <!-- Client Type Dropdown -->
-        <div class="field">
-          <label for="clientType">Client Type</label>
-          <p-dropdown
-            id="clientType"
-            [options]="clientTypes"
-            formControlName="clientType"
-            optionLabel="label"
-            optionValue="value"
-            placeholder="Select client type"
-          ></p-dropdown>
-        </div>
+					<p-floatlabel class="w-full md:w-56" variant="on">
+						<div class="field">
+						<p-select 
+						inputId="clientType" 
+						[options]="clientTypes" 
+						formControlName="clientType"
+						optionLabel="label" 
+						optionValue="value"
+						[style]="{'width':'50%'}" 
+						/>
+						<label for="clientType">Client Type</label>
+					</div>
+				</p-floatlabel>
 
         <!-- Bank Balance Field -->
+        <p-floatlabel variant="on">
         <div class="field">
-          <label for="bankBalance">Bank Balance</label>
-          <p-inputNumber
-            id="bankBalance"
+            <p-inputNumber
+            inputId="bankBalance"
             formControlName="bankBalance"
             mode="currency"
             currency="USD"
             locale="en-US"
-          ></p-inputNumber>
+            />
+            <label for="bankBalance">Bank Balance</label>
         </div>
+        </p-floatlabel>
 
         <!-- Outstanding Loan Field -->
-        <div class="field">
-          <label for="outstandingLoan">Outstanding Loan</label>
-          <p-inputNumber
-            id="outstandingLoan"
+        <p-floatlabel variant="on">
+        	<div class="field">
+            <p-inputNumber
+            inputId="outstandingLoan"
             formControlName="outstandingLoan"
             mode="currency"
             currency="USD"
             locale="en-US"
-          ></p-inputNumber>
-        </div>
+            />
+            <label for="outstandingLoan">Outstanding Loan</label>
+        	</div>
+        </p-floatlabel>
 
         <!-- Registration Date Field -->
-        <div class="field">
-          <label for="registrationDate">Registration Date</label>
-          <p-calendar
-            id="registrationDate"
-            formControlName="registrationDate"
-            [showIcon]="true"
-            dateFormat="mm/dd/yy"
-            placeholder="Select date"
-          ></p-calendar>
-        </div>
+				<p-floatlabel variant="on">
+        	<div class="field">
+            <p-datepicker  
+              inputId="registrationDate" 
+              showIcon 
+              iconDisplay="input"
+              dateFormat="dd/mm/yy"
+            />
+            <label for="registrationDate">Registration Date</label>
+					</div>
+				</p-floatlabel>
 
         <!-- Is Active Checkbox -->
         <div class="field checkbox-field">
           <p-checkbox
-            id="isActive"
+            inputId="isActive"
             formControlName="isActive"
             [binary]="true"
             label="Is Active"
-          ></p-checkbox>
+          />
+					<label for="isActive">Active</label>
         </div>
       </div>
 

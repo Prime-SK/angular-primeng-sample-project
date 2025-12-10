@@ -12,27 +12,27 @@
 }
 
 .field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 0.5rem;
 
-  label {
-    font-weight: 600;
-    color: var(--text-color);
-    font-size: 0.95rem;
+//   label {
+//     font-weight: 600;
+//     color: var(--text-color);
+//     font-size: 0.95rem;
 
-    &.required-field::after {
-      content: " *";
-      color: #ef4444;
-    }
-  }
+//     &.required-field::after {
+//       content: " *";
+//       color: #ef4444;
+//     }
+//   }
 
-  input,
-  p-dropdown,
-  p-calendar,
-  p-inputNumber {
-    width: 100%;
-  }
+//   input,
+//   p-dropdown,
+//   p-calendar,
+//   p-inputNumber {
+//     width: 100%;
+//   }
 
   &.checkbox-field {
     display: flex;
