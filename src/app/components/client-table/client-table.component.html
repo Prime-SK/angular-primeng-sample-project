@@ -30,14 +30,189 @@
             <td>{{ client.isActive ? 'Active' : 'Inactive' }}</td>
             <td>
                 <p-button 
+                    icon="pi pi-pencil" 
+                    severity="info" 
+                    size="small"
+                    (onClick)="onEdit(client, rowIndex)"
+                    [outlined]="true"
+                    class="mr-2"
+                >
+                </p-button>
+                <p-button 
                     icon="pi pi-trash" 
                     severity="danger" 
                     size="small"
                     (onClick)="onDelete(rowIndex)"
                     [outlined]="true"
-                    label="Delete">
+                >
                 </p-button>
             </td>
         </tr>
     </ng-template>
 </p-table>
+
+<p-toast></p-toast>
+
+<p-dialog 
+    header="Edit Client" 
+    [(visible)]="displayEditDialog" 
+    [modal]="true" 
+    [style]="{width: '50vw'}"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="p-fluid">
+        <div class="form-grid">
+            <!-- Name Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <input
+                        id="edit-name"
+                        type="text"
+                        pInputText
+                        formControlName="name"
+                        [class.ng-invalid]="isFieldInvalid('name')"
+                        [class.ng-dirty]="isFieldInvalid('name')"
+                    />
+                    <label for="edit-name">Name *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('name')">
+                        {{ getErrorMessage('name') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Email Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <input
+                        id="edit-email"
+                        type="email"
+                        pInputText
+                        formControlName="email"
+                        [class.ng-invalid]="isFieldInvalid('email')"
+                        [class.ng-dirty]="isFieldInvalid('email')"
+                    />
+                    <label for="edit-email">Email *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('email')">
+                        {{ getErrorMessage('email') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Phone Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <input
+                        id="edit-phone"
+                        type="text"
+                        pInputText
+                        formControlName="phone"
+                        [class.ng-invalid]="isFieldInvalid('phone')"
+                        [class.ng-dirty]="isFieldInvalid('phone')"
+                    />
+                    <label for="edit-phone">Phone *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('phone')">
+                        {{ getErrorMessage('phone') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Client Type Dropdown -->
+            <p-floatlabel class="w-full md:w-56" variant="on">
+                <div class="field">
+                    <p-select 
+                        inputId="edit-clientType" 
+                        [options]="clientTypes" 
+                        formControlName="clientType"
+                        optionLabel="label" 
+                        optionValue="value"
+                        [style]="{'width':'100%'}" 
+                    />
+                    <label for="edit-clientType">Client Type *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('clientType')">
+                        {{ getErrorMessage('clientType') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Bank Balance Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <p-inputNumber
+                        inputId="edit-bankBalance"
+                        formControlName="bankBalance"
+                        mode="currency"
+                        currency="USD"
+                        locale="en-US"
+                    />
+                    <label for="edit-bankBalance">Bank Balance *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
+                        {{ getErrorMessage('bankBalance') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Outstanding Loan Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <p-inputNumber
+                        inputId="edit-outstandingLoan"
+                        formControlName="outstandingLoan"
+                        mode="currency"
+                        currency="USD"
+                        locale="en-US"
+                    />
+                    <label for="edit-outstandingLoan">Outstanding Loan</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
+                        {{ getErrorMessage('outstandingLoan') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Registration Date Field -->
+            <p-floatlabel variant="on">
+                <div class="field">
+                    <p-datepicker  
+                        inputId="edit-registrationDate" 
+                        formControlName="registrationDate"
+                        showIcon 
+                        iconDisplay="input"
+                        dateFormat="dd/mm/yy"
+                    />
+                    <label for="edit-registrationDate">Registration Date *</label>
+                    <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
+                        {{ getErrorMessage('registrationDate') }}
+                    </small>
+                </div>
+            </p-floatlabel>
+
+            <!-- Is Active Checkbox -->
+            <div class="field checkbox-field">
+                <p-checkbox
+                    inputId="edit-isActive"
+                    formControlName="isActive"
+                    [binary]="true"
+                    label="Is Active"
+                />
+                <label for="edit-isActive">Active</label>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group" style="margin-top: 20px;">
+            <p-button
+                label="Save"
+                icon="pi pi-check"
+                type="submit"
+                [disabled]="editForm.invalid"
+            ></p-button>
+            <p-button
+                label="Cancel"
+                icon="pi pi-times"
+                type="button"
+                severity="secondary"
+                (onClick)="cancelEdit()"
+            ></p-button>
+        </div>
+    </form>
+</p-dialog>

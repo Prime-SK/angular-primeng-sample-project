@@ -41,4 +41,11 @@ export class AppComponent {
       });
     }
   }
+
+  onClientUpdated(event: { index: number; client: any }): void {
+    if (event.index >= 0 && event.index < this.clients.length) {
+      this.clients[event.index] = event.client;
+      console.log('Client updated:', this.clients);
+    }
+  }
 }
