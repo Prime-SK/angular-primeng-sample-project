@@ -62,7 +62,7 @@
     [resizable]="false"
 >
     <form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="p-fluid">
-        <div class="form-grid">
+        <div class="edit-form-grid">
             <!-- Name Field -->
             <p-floatlabel variant="on">
                 <div class="field">
@@ -71,10 +71,8 @@
                         type="text"
                         pInputText
                         formControlName="name"
-                        [class.ng-invalid]="isFieldInvalid('name')"
-                        [class.ng-dirty]="isFieldInvalid('name')"
                     />
-                    <label for="edit-name">Name *</label>
+                    <label for="edit-name">Name <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('name')">
                         {{ getErrorMessage('name') }}
                     </small>
@@ -89,10 +87,8 @@
                         type="email"
                         pInputText
                         formControlName="email"
-                        [class.ng-invalid]="isFieldInvalid('email')"
-                        [class.ng-dirty]="isFieldInvalid('email')"
                     />
-                    <label for="edit-email">Email *</label>
+                    <label for="edit-email">Email <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('email')">
                         {{ getErrorMessage('email') }}
                     </small>
@@ -110,7 +106,7 @@
                         [class.ng-invalid]="isFieldInvalid('phone')"
                         [class.ng-dirty]="isFieldInvalid('phone')"
                     />
-                    <label for="edit-phone">Phone *</label>
+                    <label for="edit-phone">Phone <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('phone')">
                         {{ getErrorMessage('phone') }}
                     </small>
@@ -128,7 +124,7 @@
                         optionValue="value"
                         [style]="{'width':'100%'}" 
                     />
-                    <label for="edit-clientType">Client Type *</label>
+                    <label for="edit-clientType">Client Type <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('clientType')">
                         {{ getErrorMessage('clientType') }}
                     </small>
@@ -145,7 +141,7 @@
                         currency="USD"
                         locale="en-US"
                     />
-                    <label for="edit-bankBalance">Bank Balance *</label>
+                    <label for="edit-bankBalance">Bank Balance <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
                         {{ getErrorMessage('bankBalance') }}
                     </small>
@@ -179,7 +175,7 @@
                         iconDisplay="input"
                         dateFormat="dd/mm/yy"
                     />
-                    <label for="edit-registrationDate">Registration Date *</label>
+                    <label for="edit-registrationDate">Registration Date <div class="r-star">*</div></label>
                     <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
                         {{ getErrorMessage('registrationDate') }}
                     </small>

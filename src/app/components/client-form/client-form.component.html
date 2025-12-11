@@ -5,14 +5,12 @@
         <!-- Name Field -->
         <div class="field">
         <p-floatlabel variant="on">
-          <label for="name">Name *</label>
+          <label for="name">Name <div class="r-star">*</div></label>
           <input
             id="name"
             type="text"
             pInputText
             formControlName="name"
-            [class.ng-invalid]="isFieldInvalid('name')"
-            [class.ng-dirty]="isFieldInvalid('name')"
           />
         </p-floatlabel>
         <small class="error-message" *ngIf="isFieldInvalid('name')">
@@ -23,14 +21,12 @@
         <!-- Email Field -->
         <div class="field">
         <p-floatlabel variant="on">
-          <label for="email">Email *</label>
+          <label for="email">Email <div class="r-star">*</div></label>
           <input
             id="email"
             type="email"
             pInputText
             formControlName="email"
-            [class.ng-invalid]="isFieldInvalid('email')"
-            [class.ng-dirty]="isFieldInvalid('email')"
           />
         </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('email')">
@@ -41,14 +37,12 @@
         <!-- Phone Field -->
         <div class="field">
         <p-floatlabel variant="on">
-          <label for="phone">Phone *</label>
+          <label for="phone">Phone <div class="r-star">*</div></label>
           <input
             id="phone"
             type="text"
             pInputText
             formControlName="phone"
-            [class.ng-invalid]="isFieldInvalid('phone')"
-            [class.ng-dirty]="isFieldInvalid('phone')"
           />
         </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('phone')">
@@ -58,7 +52,7 @@
 
         <!-- Client Type Dropdown -->
         <div class="field">
-          <p-floatlabel class="w-full md:w-56" variant="on">
+          <p-floatlabel variant="on">
 						<p-select 
 						inputId="clientType" 
 						[options]="clientTypes" 
@@ -66,7 +60,7 @@
 						optionLabel="label" 
 						optionValue="value"
 						/>
-						<label for="clientType">Client Type *</label>
+						<label for="clientType">Client Type <div class="r-star">*</div></label>
           </p-floatlabel>
             <small class="error-message" *ngIf="isFieldInvalid('clientType')">
               {{ getErrorMessage('clientType') }}
@@ -83,7 +77,7 @@
             currency="USD"
             locale="en-US"
             />
-            <label for="bankBalance">Bank Balance *</label>
+            <label for="bankBalance">Bank Balance <div class="r-star">*</div></label>
           </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
             {{ getErrorMessage('bankBalance') }}
@@ -117,7 +111,7 @@
               iconDisplay="input"
               dateFormat="dd/mm/yy"
             />
-            <label for="registrationDate">Registration Date *</label>
+            <label for="registrationDate">Registration Date <div class="r-star">*</div></label>
           </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
             {{ getErrorMessage('registrationDate') }}
