@@ -59,7 +59,7 @@ export class ClientFormComponent {
   ];
 
   clientForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
     bankBalance: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
@@ -97,8 +97,11 @@ export class ClientFormComponent {
       return 'Please enter a valid email address';
     }
     if (control.errors['pattern']) {
+      if (fieldName === 'name') {
+        return 'Cannot contain numbers or special characters';
+      }
       if (fieldName === 'phone') {
-        return 'Phone number must begin with 07 and be exactly 10 digits';
+        return 'Must begin with 07 and be exactly 10 digits';
       }
     }
     if (control.errors['min']) {

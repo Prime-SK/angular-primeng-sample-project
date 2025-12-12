@@ -64,133 +64,90 @@
     <form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="p-fluid">
         <div class="edit-form-grid">
             <!-- Name Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <input
-                        id="edit-name"
-                        type="text"
-                        pInputText
-                        formControlName="name"
-                    />
-                    <label for="edit-name">Name <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('name')">
-                        {{ getErrorMessage('name') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <label for="name">Name <div class="r-star">*</div></label>
+                    <input id="name" type="text" pInputText formControlName="name" />
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('name')">
+                    {{ getErrorMessage('name') }}
+                </small>
+            </div>
+            
             <!-- Email Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <input
-                        id="edit-email"
-                        type="email"
-                        pInputText
-                        formControlName="email"
-                    />
-                    <label for="edit-email">Email <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('email')">
-                        {{ getErrorMessage('email') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <label for="email">Email <div class="r-star">*</div></label>
+                    <input id="email" type="email" pInputText formControlName="email" />
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('email')">
+                    {{ getErrorMessage('email') }}
+                </small>
+            </div>
+            
             <!-- Phone Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <input
-                        id="edit-phone"
-                        type="text"
-                        pInputText
-                        formControlName="phone"
-                        [class.ng-invalid]="isFieldInvalid('phone')"
-                        [class.ng-dirty]="isFieldInvalid('phone')"
-                    />
-                    <label for="edit-phone">Phone <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('phone')">
-                        {{ getErrorMessage('phone') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <label for="phone">Phone <div class="r-star">*</div></label>
+                    <input id="phone" type="text" pInputText formControlName="phone" />
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('phone')">
+                    {{ getErrorMessage('phone') }}
+                </small>
+            </div>
+            
             <!-- Client Type Dropdown -->
-            <p-floatlabel class="w-full md:w-56" variant="on">
-                <div class="field">
-                    <p-select 
-                        inputId="edit-clientType" 
-                        [options]="clientTypes" 
-                        formControlName="clientType"
-                        optionLabel="label" 
-                        optionValue="value"
-                        [style]="{'width':'100%'}" 
-                    />
-                    <label for="edit-clientType">Client Type <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('clientType')">
-                        {{ getErrorMessage('clientType') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
+                        optionValue="value" />
+                    <label for="clientType">Client Type <div class="r-star">*</div></label>
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('clientType')">
+                    {{ getErrorMessage('clientType') }}
+                </small>
+            </div>
+            
             <!-- Bank Balance Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <p-inputNumber
-                        inputId="edit-bankBalance"
-                        formControlName="bankBalance"
-                        mode="currency"
-                        currency="USD"
-                        locale="en-US"
-                    />
-                    <label for="edit-bankBalance">Bank Balance <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
-                        {{ getErrorMessage('bankBalance') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="USD"
+                        locale="en-US" />
+                    <label for="bankBalance">Bank Balance <div class="r-star">*</div></label>
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
+                    {{ getErrorMessage('bankBalance') }}
+                </small>
+            </div>
+            
             <!-- Outstanding Loan Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <p-inputNumber
-                        inputId="edit-outstandingLoan"
-                        formControlName="outstandingLoan"
-                        mode="currency"
-                        currency="USD"
-                        locale="en-US"
-                    />
-                    <label for="edit-outstandingLoan">Outstanding Loan</label>
-                    <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
-                        {{ getErrorMessage('outstandingLoan') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="USD"
+                        locale="en-US" />
+                    <label for="outstandingLoan">Outstanding Loan</label>
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
+                    {{ getErrorMessage('outstandingLoan') }}
+                </small>
+            </div>
+            
             <!-- Registration Date Field -->
-            <p-floatlabel variant="on">
-                <div class="field">
-                    <p-datepicker  
-                        inputId="edit-registrationDate" 
-                        formControlName="registrationDate"
-                        showIcon 
-                        iconDisplay="input"
-                        dateFormat="dd/mm/yy"
-                    />
-                    <label for="edit-registrationDate">Registration Date <div class="r-star">*</div></label>
-                    <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
-                        {{ getErrorMessage('registrationDate') }}
-                    </small>
-                </div>
-            </p-floatlabel>
-
+            <div class="field">
+                <p-floatlabel variant="on">
+                    <p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
+                        dateFormat="dd/mm/yy" />
+                    <label for="registrationDate">Registration Date <div class="r-star">*</div></label>
+                </p-floatlabel>
+                <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
+                    {{ getErrorMessage('registrationDate') }}
+                </small>
+            </div>
+            
             <!-- Is Active Checkbox -->
             <div class="field checkbox-field">
-                <p-checkbox
-                    inputId="edit-isActive"
-                    formControlName="isActive"
-                    [binary]="true"
-                    label="Is Active"
-                />
-                <label for="edit-isActive">Active</label>
+                <label for="isActive" style="margin: 0 10px 0 0;">Active</label>
+                <p-checkbox inputId="isActive" formControlName="isActive" [binary]="true" label="Is Active" />
             </div>
         </div>
 
