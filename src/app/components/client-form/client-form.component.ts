@@ -13,22 +13,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ToastModule } from 'primeng/toast';
 import { KeyFilterModule } from 'primeng/keyfilter';
-
-interface ClientType {
-  label: string;
-  value: string;
-}
-
-interface Client {
-  name: string | null;
-  email: string | null;
-  phone: string | null;
-  bankBalance: number | null;
-  outstandingLoan: number | null;
-  clientType: null | string;
-  registrationDate: Date | null;
-  isActive: boolean | null;
-}
+import { Client } from '../../client';
+import { ClientType } from '../../client-type';
 
 @Component({
   selector: 'app-client-form',

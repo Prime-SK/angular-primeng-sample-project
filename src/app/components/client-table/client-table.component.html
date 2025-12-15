@@ -5,7 +5,7 @@
 	[rows]="5"
 	[rowsPerPageOptions]="[5, 10, 20]"
 	>
-    <ng-template #header>
+    <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
             <th>Email</th>
@@ -18,7 +18,7 @@
             <th>Actions</th>
         </tr>
     </ng-template>
-    <ng-template #body let-client let-rowIndex="rowIndex">
+    <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
         <tr>
             <td>{{ client.name }}</td>
             <td>{{ client.email }}</td>

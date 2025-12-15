@@ -13,22 +13,8 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TagModule } from 'primeng/tag';
-
-interface Client {
-  name: string | null;
-  email: string | null;
-  phone: string | null;
-  bankBalance: number | null;
-  outstandingLoan: number | null;
-  clientType: null | string;
-  registrationDate: Date | null;
-  isActive: boolean | null;
-}
-
-interface ClientType {
-  label: string;
-  value: string;
-}
+import { Client } from '../../client';
+import { ClientType } from '../../client-type';
 
 @Component({
   selector: 'app-client-table',
