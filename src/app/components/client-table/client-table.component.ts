@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MessageService } from 'primeng/api';
@@ -19,9 +19,12 @@ import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
   styleUrl: './client-table.component.scss'
 })
 export class ClientTableComponent {
-  @Input() clientEntries: Client[] = [];
-  @Output() clientDeleted = new EventEmitter<number>();
-  @Output() clientUpdated = new EventEmitter<{ index: number; client: Client }>();
+  // @Input() clientEntries: Client[] = [];
+  clientEntries = input<Client[]>([]);
+  // @Output() clientDeleted = new EventEmitter<number>();
+  clientDeleted = output<number>();
+  // @Output() clientUpdated = new EventEmitter<{ index: number; client: Client }>();
+  clientUpdated = output<{ index: number; client: Client }>();
 
   displayEditDialog = false;
   editingIndex: number | null = null;

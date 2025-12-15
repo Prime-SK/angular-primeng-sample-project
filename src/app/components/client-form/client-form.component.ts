@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Client } from '../../client';
@@ -17,7 +17,8 @@ import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
   styleUrl: './client-form.component.scss'
 })
 export class ClientFormComponent {
-  @Output() clientSubmitted = new EventEmitter<Client>();
+  // @Output() clientSubmitted = new EventEmitter<Client>();
+  clientSubmitted = output<Client>();
 
   clientTypes: ClientType[] = [
     { label: 'Individual', value: 'Individual' },

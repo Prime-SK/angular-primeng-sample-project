@@ -32,6 +32,39 @@
       "clientType": "Individual",
       "isActive": true,
       "registrationDate": "2024-12-14T18:30:00.000Z"
+    },
+    {
+      "id": "8a28",
+      "name": "arthur morgan",
+      "email": "am@gmail.com",
+      "phone": "0712255655",
+      "bankBalance": 70000,
+      "outstandingLoan": 2500,
+      "clientType": "Business",
+      "isActive": true,
+      "registrationDate": "2023-11-30T18:30:00.000Z"
+    },
+    {
+      "name": "trevor philips",
+      "email": "tp@gmail.com",
+      "phone": "0765589585",
+      "bankBalance": 99454444,
+      "outstandingLoan": 100,
+      "clientType": "Business",
+      "isActive": false,
+      "registrationDate": "2020-11-30T18:30:00.000Z",
+      "id": "6069"
+    },
+    {
+      "id": "7d65",
+      "name": "tommy shelby",
+      "email": "ts@gmail.com",
+      "phone": "0745868954",
+      "bankBalance": 45000,
+      "outstandingLoan": 450,
+      "clientType": "Individual",
+      "isActive": true,
+      "registrationDate": "2025-11-30T18:30:00.000Z"
     }
   ]
 }

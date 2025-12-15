@@ -1,188 +1,194 @@
 <p-table 
-	#dt
-	[value]="clientEntries" 
+	#dt 
+	[value]="clientEntries()" 
 	[tableStyle]="{ 'min-width': '50rem' }" 
 	[paginator]="true" 
 	[rows]="5"
-  [rowsPerPageOptions]="[5, 10, 20]" 
+	[rowsPerPageOptions]="[5, 10, 20]" 
 	[globalFilterFields]="['name', 'email', 'phone', 'clientType', 'isActive']"
-	>
-    <ng-template pTemplate="caption">
-        <div class="table-header">
-            <h5 class="m-0">Clients</h5>
-            <p-iconfield iconPosition="left" >
-								<p-inputicon styleClass="pi pi-search" />
-                <input 
-									pInputText 
-									type="text" 
-									(input)="dt.filterGlobal($any($event.target).value, 'contains')" 
-									placeholder="Search..." 
-								/>
-            </p-iconfield>
-        </div>
-    </ng-template>
+>
+	<ng-template pTemplate="caption">
+		<div class="table-header">
+			<h5 class="m-0">Clients</h5>
+			<p-iconfield iconPosition="left">
+				<p-inputicon styleClass="pi pi-search" />
+				<input 
+					pInputText 
+					type="text" 
+					(input)="dt.filterGlobal($any($event.target).value, 'contains')"
+					placeholder="Search..." 
+				/>
+			</p-iconfield>
+		</div>
+	</ng-template>
 
-    <ng-template pTemplate="header">
-        <tr>
-            <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
-            <th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
-            <th style="text-align:center;">Phone</th>
-            <th style="text-align:center;" pSortableColumn="clientType">Type <p-sortIcon field="clientType" /></th>
-            <th style="text-align: right;" pSortableColumn="bankBalance">Balance <p-sortIcon field="bankBalance" /></th>
-            <th style="text-align: right;" pSortableColumn="outstandingLoan">Overdraft <p-sortIcon field="outstandingLoan" /></th>
-            <th style="text-align:center;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" /></th>
-            <th style="text-align:center;" pSortableColumn="isActive">Status <p-sortIcon field="isActive" /></th>
-						<th style="text-align:center;">Actions</th>		
-        </tr>
-    </ng-template>
+	<ng-template pTemplate="header">
+		<tr>
+			<th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+			<th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
+			<th style="text-align:center;">Phone</th>
+			<th style="text-align:center;" pSortableColumn="clientType">Type <p-sortIcon field="clientType" /></th>
+			<th style="text-align: right;" pSortableColumn="bankBalance">Balance <p-sortIcon field="bankBalance" /></th>
+			<th style="text-align: right;" pSortableColumn="outstandingLoan">Overdraft <p-sortIcon field="outstandingLoan" />
+			</th>
+			<th style="text-align:center;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" />
+			</th>
+			<th style="text-align:center;" pSortableColumn="isActive">Status <p-sortIcon field="isActive" /></th>
+			<th style="text-align:center;">Actions</th>
+		</tr>
+	</ng-template>
 
-    <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
-        <tr>
-            <td>{{ client.name }}</td>
-            <td>{{ client.email }}</td>
-            <td style="text-align:center;">{{ client.phone }}</td>
-            <td style="text-align:center;">{{ client.clientType }}</td>
-            <td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
-            <td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) |
-                number:'1.2-2' }}</td>
-            <td style="text-align:center;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
-            <td style="text-align:center;">
-                <p-tag [severity]="client.isActive ? 'success' : 'warn'"
-                    [value]="client.isActive ? 'Active' : 'Inactive'" [rounded]="true"></p-tag>
-            </td>
-            <td style="text-align:center;">
-                <p-button icon="pi pi-pencil" severity="info" size="small" (onClick)="onEdit(client, rowIndex)"
-                    [outlined]="true" class="mr-2">
-                </p-button>
-                <p-button icon="pi pi-trash" severity="danger" size="small" (onClick)="onDelete(rowIndex)"
-                    [outlined]="true">
-                </p-button>
-            </td>
-        </tr>
-    </ng-template>
+	<ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
+		<tr>
+			<td>{{ client.name }}</td>
+			<td>{{ client.email }}</td>
+			<td style="text-align:center;">{{ client.phone }}</td>
+			<td style="text-align:center;">{{ client.clientType }}</td>
+			<td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
+			<td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) |
+				number:'1.2-2' }}</td>
+			<td style="text-align:center;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
+			<td style="text-align:center;">
+				<p-tag 
+					[severity]="client.isActive ? 'success' : 'warn'" 
+					[value]="client.isActive ? 'Active' : 'Inactive'"
+					[rounded]="true"
+				>
+				</p-tag>
+			</td>
+			<td style="text-align:center;">
+				<p-button 
+					icon="pi pi-pencil" 
+					severity="info" 
+					size="small" 
+					(onClick)="onEdit(client, rowIndex)"
+					[outlined]="true" class="mr-2"
+				>
+				</p-button>
+				<p-button 
+					icon="pi pi-trash" 
+					severity="danger" 
+					size="small" 
+					(onClick)="onDelete(rowIndex)" 
+					[outlined]="true"
+				>
+				</p-button>
+			</td>
+		</tr>
+	</ng-template>
 
-    <ng-template #emptymessage>
-        <tr>
-            <td colspan="9" style="text-align:center; vertical-align:middle;">No customers found.</td>
-        </tr>
-    </ng-template>
+	<ng-template #emptymessage>
+		<tr>
+			<td colspan="9" style="text-align:center; vertical-align:middle;">No customers found.</td>
+		</tr>
+	</ng-template>
 </p-table>
 
 <p-toast></p-toast>
 
 <p-dialog 
-    header="Edit Client" 
-    [(visible)]="displayEditDialog" 
-    [modal]="true" 
-    [style]="{width: '50vw'}"
-    [draggable]="false"
-    [resizable]="false"
+	header="Edit Client" 
+	[(visible)]="displayEditDialog" 
+	[modal]="true" 
+	[style]="{width: '50vw'}"
+	[draggable]="false" 
+	[resizable]="false"
 >
-    <form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="p-fluid">
-        <div class="edit-form-grid">
-            <!-- Name Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <label for="name">Name <span class="r-star">*</span></label>
-                    <input id="name" type="text" pInputText formControlName="name" />
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('name')">
-                    {{ getErrorMessage('name') }}
-                </small>
-            </div>
-            
-            <!-- Email Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <label for="email">Email <span class="r-star">*</span></label>
-                    <input id="email" type="email" pInputText formControlName="email" />
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('email')">
-                    {{ getErrorMessage('email') }}
-                </small>
-            </div>
-            
-            <!-- Phone Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <label for="phone">Phone <span class="r-star">*</span></label>
-                    <input id="phone" type="text" pInputText formControlName="phone" />
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('phone')">
-                    {{ getErrorMessage('phone') }}
-                </small>
-            </div>
-            
-            <!-- Client Type Dropdown -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
-                        optionValue="value" />
-                    <label for="clientType">Client Type <span class="r-star">*</span></label>
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('clientType')">
-                    {{ getErrorMessage('clientType') }}
-                </small>
-            </div>
-            
-            <!-- Bank Balance Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="LKR"
-                        locale="en-US" />
-                    <label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
-                    {{ getErrorMessage('bankBalance') }}
-                </small>
-            </div>
-            
-            <!-- Outstanding Loan Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="LKR"
-                        locale="en-US" />
-                    <label for="outstandingLoan">Outstanding Loan</label>
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
-                    {{ getErrorMessage('outstandingLoan') }}
-                </small>
-            </div>
-            
-            <!-- Registration Date Field -->
-            <div class="field">
-                <p-floatlabel variant="on">
-                    <p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
-                        dateFormat="dd/mm/yy" />
-                    <label for="registrationDate">Registration Date <span class="r-star">*</span></label>
-                </p-floatlabel>
-                <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
-                    {{ getErrorMessage('registrationDate') }}
-                </small>
-            </div>
-            
-            <!-- Is Active Checkbox -->
-            <div class="field checkbox-field">
-                <label for="isActive" style="margin: 0 10px 0 0;">Active</label>
-                <p-checkbox inputId="isActive" formControlName="isActive" [binary]="true" label="Is Active" />
-            </div>
-        </div>
+	<form [formGroup]="editForm" (ngSubmit)="saveEdit()" class="p-fluid">
+		<div class="edit-form-grid">
+			<!-- Name Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<label for="name">Name <span class="r-star">*</span></label>
+					<input id="name" type="text" pInputText formControlName="name" />
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('name')">
+					{{ getErrorMessage('name') }}
+				</small>
+			</div>
 
-        <!-- Action Buttons -->
-        <div class="button-group" style="margin-top: 20px;">
-            <p-button
-                label="Save"
-                icon="pi pi-check"
-                type="submit"
-                [disabled]="editForm.invalid"
-            ></p-button>
-            <p-button
-                label="Cancel"
-                icon="pi pi-times"
-                type="button"
-                severity="secondary"
-                (onClick)="cancelEdit()"
-            ></p-button>
-        </div>
-    </form>
+			<!-- Email Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<label for="email">Email <span class="r-star">*</span></label>
+					<input id="email" type="email" pInputText formControlName="email" />
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('email')">
+					{{ getErrorMessage('email') }}
+				</small>
+			</div>
+
+			<!-- Phone Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<label for="phone">Phone <span class="r-star">*</span></label>
+					<input id="phone" type="text" pInputText formControlName="phone" />
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('phone')">
+					{{ getErrorMessage('phone') }}
+				</small>
+			</div>
+
+			<!-- Client Type Dropdown -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
+						optionValue="value" />
+					<label for="clientType">Client Type <span class="r-star">*</span></label>
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('clientType')">
+					{{ getErrorMessage('clientType') }}
+				</small>
+			</div>
+
+			<!-- Bank Balance Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="LKR"
+						locale="en-US" />
+					<label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
+					{{ getErrorMessage('bankBalance') }}
+				</small>
+			</div>
+
+			<!-- Outstanding Loan Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="LKR"
+						locale="en-US" />
+					<label for="outstandingLoan">Outstanding Loan</label>
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
+					{{ getErrorMessage('outstandingLoan') }}
+				</small>
+			</div>
+
+			<!-- Registration Date Field -->
+			<div class="field">
+				<p-floatlabel variant="on">
+					<p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
+						dateFormat="dd/mm/yy" />
+					<label for="registrationDate">Registration Date <span class="r-star">*</span></label>
+				</p-floatlabel>
+				<small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
+					{{ getErrorMessage('registrationDate') }}
+				</small>
+			</div>
+
+			<!-- Is Active Checkbox -->
+			<div class="field checkbox-field">
+				<label for="isActive" style="margin: 0 10px 0 0;">Active</label>
+				<p-checkbox inputId="isActive" formControlName="isActive" [binary]="true" label="Is Active" />
+			</div>
+		</div>
+
+		<!-- Action Buttons -->
+		<div class="button-group" style="margin-top: 20px;">
+			<p-button label="Save" icon="pi pi-check" type="submit" [disabled]="editForm.invalid"></p-button>
+			<p-button label="Cancel" icon="pi pi-times" type="button" severity="secondary"
+				(onClick)="cancelEdit()"></p-button>
+		</div>
+	</form>
 </p-dialog>
