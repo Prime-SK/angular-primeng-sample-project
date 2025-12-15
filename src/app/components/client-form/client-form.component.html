@@ -42,6 +42,7 @@
             id="phone"
             type="text"
             pInputText
+            pKeyFilter="num"
             formControlName="phone"
           />
         </p-floatlabel>
@@ -68,14 +69,16 @@
         </div>
 
         <!-- Bank Balance Field -->
+        <!-- [inputStyle]="{'text-align' : 'right'}" -->
         <div class="field">
           <p-floatlabel variant="on">
             <p-inputNumber
             inputId="bankBalance"
             formControlName="bankBalance"
             mode="currency"
-            currency="USD"
+            currency="LKR"
             locale="en-US"
+            
             />
             <label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
           </p-floatlabel>
@@ -91,7 +94,7 @@
             inputId="outstandingLoan"
             formControlName="outstandingLoan"
             mode="currency"
-            currency="USD"
+            currency="LKR"
             locale="en-US"
             />
             <label for="outstandingLoan">Outstanding Loan</label>
@@ -120,13 +123,15 @@
 
         <!-- Is Active Checkbox -->
         <div class="field checkbox-field">
-          <label for="isActive" style="margin: 0 10px 0 0;">Active</label>
-          <p-checkbox
-            inputId="isActive"
-            formControlName="isActive"
-            [binary]="true"
-            label="Is Active"
-          />
+          <div style="padding-top: 0.5rem; display: flex; gap: 0.5rem;">
+            <label for="isActive" >Active</label>
+            <p-checkbox
+              inputId="isActive"
+              formControlName="isActive"
+              [binary]="true"
+              label="Is Active"
+            />
+          </div>
         </div>
       </div>
 

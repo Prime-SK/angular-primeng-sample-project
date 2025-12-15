@@ -24,10 +24,16 @@
             <td>{{ client.email }}</td>
             <td>{{ client.phone }}</td>
             <td>{{ client.clientType }}</td>
-            <td>{{ client.bankBalance }}</td>
-            <td>{{ client.outstandingLoan }}</td>
+            <td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
+            <td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) | number:'1.2-2' }}</td>
             <td>{{ client.registrationDate | date:'dd/MM/yyyy'  }}</td>
-            <td>{{ client.isActive ? 'Active' : 'Inactive' }}</td>
+            <td>
+                <p-tag
+                    [severity]="client.isActive ? 'success' : 'warn'"
+                    [value]="client.isActive ? 'Active' : 'Inactive'"
+                    [rounded]="true"
+                ></p-tag>
+            </td>
             <td>
                 <p-button 
                     icon="pi pi-pencil" 
@@ -66,7 +72,7 @@
             <!-- Name Field -->
             <div class="field">
                 <p-floatlabel variant="on">
-                    <label for="name">Name <div class="r-star">*</div></label>
+                    <label for="name">Name <span class="r-star">*</span></label>
                     <input id="name" type="text" pInputText formControlName="name" />
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('name')">
@@ -77,7 +83,7 @@
             <!-- Email Field -->
             <div class="field">
                 <p-floatlabel variant="on">
-                    <label for="email">Email <div class="r-star">*</div></label>
+                    <label for="email">Email <span class="r-star">*</span></label>
                     <input id="email" type="email" pInputText formControlName="email" />
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('email')">
@@ -88,7 +94,7 @@
             <!-- Phone Field -->
             <div class="field">
                 <p-floatlabel variant="on">
-                    <label for="phone">Phone <div class="r-star">*</div></label>
+                    <label for="phone">Phone <span class="r-star">*</span></label>
                     <input id="phone" type="text" pInputText formControlName="phone" />
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('phone')">
@@ -101,7 +107,7 @@
                 <p-floatlabel variant="on">
                     <p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
                         optionValue="value" />
-                    <label for="clientType">Client Type <div class="r-star">*</div></label>
+                    <label for="clientType">Client Type <span class="r-star">*</span></label>
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('clientType')">
                     {{ getErrorMessage('clientType') }}
@@ -111,9 +117,9 @@
             <!-- Bank Balance Field -->
             <div class="field">
                 <p-floatlabel variant="on">
-                    <p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="USD"
+                    <p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="LKR"
                         locale="en-US" />
-                    <label for="bankBalance">Bank Balance <div class="r-star">*</div></label>
+                    <label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
                     {{ getErrorMessage('bankBalance') }}
@@ -123,7 +129,7 @@
             <!-- Outstanding Loan Field -->
             <div class="field">
                 <p-floatlabel variant="on">
-                    <p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="USD"
+                    <p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="LKR"
                         locale="en-US" />
                     <label for="outstandingLoan">Outstanding Loan</label>
                 </p-floatlabel>
@@ -137,7 +143,7 @@
                 <p-floatlabel variant="on">
                     <p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
                         dateFormat="dd/mm/yy" />
-                    <label for="registrationDate">Registration Date <div class="r-star">*</div></label>
+                    <label for="registrationDate">Registration Date <span class="r-star">*</span></label>
                 </p-floatlabel>
                 <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
                     {{ getErrorMessage('registrationDate') }}

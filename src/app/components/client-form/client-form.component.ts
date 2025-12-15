@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { ToastModule } from 'primeng/toast';
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 interface ClientType {
   label: string;
@@ -45,7 +46,8 @@ interface Client {
     InputNumberModule,
     FloatLabelModule,
     SelectModule,
-    ToastModule
+    ToastModule,
+    KeyFilterModule
   ],
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.scss'
@@ -54,12 +56,12 @@ export class ClientFormComponent {
   @Output() clientSubmitted = new EventEmitter<Client>();
 
   clientTypes: ClientType[] = [
-    { label: 'Individual', value: 'individual' },
-    { label: 'Business', value: 'business' }
+    { label: 'Individual', value: 'Individual' },
+    { label: 'Business', value: 'Business' }
   ];
 
   clientForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^(?!\s+$)[A-Za-z\s]+$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
     bankBalance: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
@@ -80,7 +82,6 @@ export class ClientFormComponent {
   handleReset() {
     this.clientForm.reset({
       isActive: false,
-      registrationDate: new Date()
     });
   }
 

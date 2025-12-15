@@ -12,6 +12,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { TagModule } from 'primeng/tag';
 
 interface Client {
   name: string | null;
@@ -44,7 +45,8 @@ interface ClientType {
     CheckboxModule,
     DatePickerModule,
     InputNumberModule,
-    FloatLabelModule
+    FloatLabelModule,
+    TagModule
   ],
   providers: [MessageService],
   templateUrl: './client-table.component.html',
@@ -59,8 +61,8 @@ export class ClientTableComponent {
   editingIndex: number | null = null;
 
   clientTypes: ClientType[] = [
-    { label: 'Individual', value: 'individual' },
-    { label: 'Business', value: 'business' }
+    { label: 'Individual', value: 'Individual' },
+    { label: 'Business', value: 'Business' }
   ];
 
   editForm = new FormGroup({

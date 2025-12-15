@@ -2,6 +2,13 @@
 @use "primeicons/primeicons.css" as *;
 
 /* Global styles */
+:root{
+  --primary-color: #4f46e5;
+  --primary-color-text: #ffffff;
+  --surface-ground: #f9fafb;
+  --surface-border: #d1d5db;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 body {
   font-family: var(--font-family);
   margin: 0;
@@ -59,13 +66,6 @@ body {
   .p-inputnumber {
     width: 100%;
   }
-
-  &.checkbox-field {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.5rem;
-  }
 }
 
 .r-star {
@@ -89,7 +89,7 @@ body {
   justify-content: flex-end;
   // margin-top: 0.5rem;
   // padding-top: 1rem;
-  border-top: 1px solid var(--surface-border);
+  // border-top: 1px solid var(--surface-border);
 }
 
 .mr-2 {
