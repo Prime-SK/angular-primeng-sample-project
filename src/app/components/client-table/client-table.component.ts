@@ -1,38 +1,18 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { SelectModule } from 'primeng/select';
-import { CheckboxModule } from 'primeng/checkbox';
-import { DatePickerModule } from 'primeng/datepicker';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { TagModule } from 'primeng/tag';
+import { CommonModule } from '@angular/common';
+import { MessageService } from 'primeng/api';
 import { Client } from '../../client';
 import { ClientType } from '../../client-type';
+import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
 
 @Component({
   selector: 'app-client-table',
   standalone: true,
   imports: [
-    TableModule,
     CommonModule,
-    ButtonModule,
-    DialogModule,
-    ToastModule,
     ReactiveFormsModule,
-    InputTextModule,
-    SelectModule,
-    CheckboxModule,
-    DatePickerModule,
-    InputNumberModule,
-    FloatLabelModule,
-    TagModule
+    PrimeNgSharedModule
   ],
   providers: [MessageService],
   templateUrl: './client-table.component.html',
@@ -45,27 +25,35 @@ export class ClientTableComponent {
 
   displayEditDialog = false;
   editingIndex: number | null = null;
+  editingClientId: number | undefined;
 
   clientTypes: ClientType[] = [
-    { label: 'Individual', value: 'Individual' },
-    { label: 'Business', value: 'Business' }
+    { 
+      label: 'Individual',
+      value: 'Individual'
+    },
+    { 
+      label: 'Business',
+      value: 'Business'
+    }
   ];
 
   editForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required, Validators.pattern(/^(?!\s+$)[A-Za-z\s]+$/)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10}$')]),
+    phone: new FormControl('', [Validators.required, Validators.pattern('^[0][7][0-9]{8}$')]),
     bankBalance: new FormControl<number | null>(null, [Validators.required, Validators.min(0)]),
     outstandingLoan: new FormControl<number | null>(null, [Validators.min(0)]),
     clientType: new FormControl<string | null>(null, [Validators.required]),
     isActive: new FormControl(false),
-    registrationDate: new FormControl<Date | null>(new Date(), [Validators.required])
+    registrationDate: new FormControl<Date | null>(null, [Validators.required])
   });
 
   constructor(private messageService: MessageService) {}
 
   onEdit(client: Client, index: number): void {
     this.editingIndex = index;
+    this.editingClientId = client.id;
     this.editForm.patchValue({
       name: client.name,
       email: client.email,
@@ -85,7 +73,10 @@ export class ClientTableComponent {
 
   saveEdit(): void {
     if (this.editForm.valid && this.editingIndex !== null) {
-      const updatedClient = this.editForm.value as Client;
+      const updatedClient: Client = {
+        ...this.editForm.value as Client,
+        id: this.editingClientId
+      };
       this.clientUpdated.emit({ index: this.editingIndex, client: updatedClient });
       this.messageService.add({
         severity: 'success',
@@ -95,12 +86,14 @@ export class ClientTableComponent {
       });
       this.displayEditDialog = false;
       this.editingIndex = null;
+      this.editingClientId = undefined;
     }
   }
 
   cancelEdit(): void {
     this.displayEditDialog = false;
     this.editingIndex = null;
+    this.editingClientId = undefined;
     this.editForm.reset();
   }
 
@@ -122,8 +115,11 @@ export class ClientTableComponent {
       return 'Please enter a valid email address';
     }
     if (control.errors['pattern']) {
+      if (fieldName === 'name') {
+        return 'Cannot contain numbers or special characters';
+      }
       if (fieldName === 'phone') {
-        return 'Phone number must be exactly 10 digits';
+        return 'Must begin with 07 and be exactly 10 digits';
       }
     }
     if (control.errors['min']) {

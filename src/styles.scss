@@ -37,6 +37,13 @@ body {
   padding: 1rem;
 }
 
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
 .client-form-container {
   max-width: 1200px;
   margin: 2rem auto;

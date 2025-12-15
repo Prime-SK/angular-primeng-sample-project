@@ -1,92 +1,37 @@
 {
   "clients": [
-    { 
-      "id": 1,
-      "name": "John Cena",
-      "email": "john.cena@example.com",
-      "phone": "1234567890",
-      "bankBalance": 15000,
-      "outstandingLoan": 2500,
+    {
+      "name": "thathsara",
+      "email": "kst@gmail.com",
+      "phone": "0702284211",
+      "bankBalance": 69420,
+      "outstandingLoan": 101,
       "clientType": "Individual",
-      "registrationDate": "2023-01-15",
-      "isActive": true
+      "isActive": true,
+      "registrationDate": "2025-12-14T18:30:00.000Z",
+      "id": "dcd2"
     },
     {
-      "id": 2,
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "phone": "9876543210",
-      "bankBalance": 25000,
-      "outstandingLoan": 0,
+      "name": "gas labu",
+      "email": "gas@gmail.com",
+      "phone": "0722264211",
+      "bankBalance": 789000,
+      "outstandingLoan": 67,
       "clientType": "Business",
-      "registrationDate": "2023-03-20",
-      "isActive": true
+      "isActive": false,
+      "registrationDate": "2025-12-13T18:30:00.000Z",
+      "id": "3d99"
     },
     {
-      "id": 3,
-      "name": "Bob Johnson",
-      "email": "bob.johnson@example.com",
-      "phone": "5555555555",
-      "bankBalance": 8000,
-      "outstandingLoan": 1000,
+      "id": "a1ee",
+      "name": "moda tharindu",
+      "email": "mt@gmail.com",
+      "phone": "0715454558",
+      "bankBalance": 45645,
+      "outstandingLoan": 12,
       "clientType": "Individual",
-      "registrationDate": "2023-06-10",
-      "isActive": false
-    },
-    { 
-      "id": 4,
-      "name": "Alice Williams",
-      "email": "alice.w@example.com",
-      "phone": "4444444444",
-      "bankBalance": 30000,
-      "outstandingLoan": 5000,
-      "clientType": "Business",
-      "registrationDate": "2023-08-05",
-      "isActive": true
-    },
-    {
-      "id": 5,
-      "name": "Charlie Brown",
-      "email": "charlie.b@example.com",
-      "phone": "3333333333",
-      "bankBalance": 12000,
-      "outstandingLoan": 0,
-      "clientType": "Individual",
-      "registrationDate": "2023-09-12",
-      "isActive": true
-    },
-    {
-      "id": 6,
-      "name": "Diana Prince",
-      "email": "diana.p@example.com",
-      "phone": "2222222222",
-      "bankBalance": 45000,
-      "outstandingLoan": 8000,
-      "clientType": "Business",
-      "registrationDate": "2023-10-25",
-      "isActive": true
-    },
-    {
-      "id": 7,
-      "name": "Edward Norton",
-      "email": "edward.n@example.com",
-      "phone": "1111111111",
-      "bankBalance": 6500,
-      "outstandingLoan": 500,
-      "clientType": "Individual",
-      "registrationDate": "2023-11-30",
-      "isActive": false
-    },
-    {
-      "id": 8,
-      "name": "Fiona Green",
-      "email": "fiona.g@example.com",
-      "phone": "6666666666",
-      "bankBalance": 22000,
-      "outstandingLoan": 3000,
-      "clientType": "Business",
-      "registrationDate": "2024-01-18",
-      "isActive": true
+      "isActive": true,
+      "registrationDate": "2024-12-14T18:30:00.000Z"
     }
   ]
 }

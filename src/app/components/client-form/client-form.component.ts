@@ -1,20 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { DropdownModule } from 'primeng/dropdown';
-import { SelectModule } from 'primeng/select';
-import { CheckboxModule } from 'primeng/checkbox';
-import { CalendarModule } from 'primeng/calendar';
-import { DatePickerModule } from 'primeng/datepicker';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { ToastModule } from 'primeng/toast';
-import { KeyFilterModule } from 'primeng/keyfilter';
 import { Client } from '../../client';
 import { ClientType } from '../../client-type';
+import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
 
 @Component({
   selector: 'app-client-form',
@@ -22,18 +11,7 @@ import { ClientType } from '../../client-type';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    InputTextModule,
-    DropdownModule,
-    CheckboxModule,
-    CalendarModule,
-    DatePickerModule,
-    ButtonModule,
-    CardModule,
-    InputNumberModule,
-    FloatLabelModule,
-    SelectModule,
-    ToastModule,
-    KeyFilterModule
+    PrimeNgSharedModule
   ],
   templateUrl: './client-form.component.html',
   styleUrl: './client-form.component.scss'

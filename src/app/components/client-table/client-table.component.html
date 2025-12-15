@@ -1,58 +1,69 @@
 <p-table 
-  [value]="clientEntries" 
-	[tableStyle]="{ 'min-width': '50rem' }"
-	[paginator]="true"
+	#dt
+	[value]="clientEntries" 
+	[tableStyle]="{ 'min-width': '50rem' }" 
+	[paginator]="true" 
 	[rows]="5"
-	[rowsPerPageOptions]="[5, 10, 20]"
+  [rowsPerPageOptions]="[5, 10, 20]" 
+	[globalFilterFields]="['name', 'email', 'phone', 'clientType', 'isActive']"
 	>
+    <ng-template pTemplate="caption">
+        <div class="table-header">
+            <h5 class="m-0">Clients</h5>
+            <p-iconfield iconPosition="left" >
+								<p-inputicon styleClass="pi pi-search" />
+                <input 
+									pInputText 
+									type="text" 
+									(input)="dt.filterGlobal($any($event.target).value, 'contains')" 
+									placeholder="Search..." 
+								/>
+            </p-iconfield>
+        </div>
+    </ng-template>
+
     <ng-template pTemplate="header">
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Type</th>
-            <th>Balance</th>
-            <th>Overdraft</th>
-            <th>Date</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+            <th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
+            <th style="text-align:center;">Phone</th>
+            <th style="text-align:center;" pSortableColumn="clientType">Type <p-sortIcon field="clientType" /></th>
+            <th style="text-align: right;" pSortableColumn="bankBalance">Balance <p-sortIcon field="bankBalance" /></th>
+            <th style="text-align: right;" pSortableColumn="outstandingLoan">Overdraft <p-sortIcon field="outstandingLoan" /></th>
+            <th style="text-align:center;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" /></th>
+            <th style="text-align:center;" pSortableColumn="isActive">Status <p-sortIcon field="isActive" /></th>
+						<th style="text-align:center;">Actions</th>		
         </tr>
     </ng-template>
+
     <ng-template pTemplate="body" let-client let-rowIndex="rowIndex">
         <tr>
             <td>{{ client.name }}</td>
             <td>{{ client.email }}</td>
-            <td>{{ client.phone }}</td>
-            <td>{{ client.clientType }}</td>
+            <td style="text-align:center;">{{ client.phone }}</td>
+            <td style="text-align:center;">{{ client.clientType }}</td>
             <td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
-            <td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) | number:'1.2-2' }}</td>
-            <td>{{ client.registrationDate | date:'dd/MM/yyyy'  }}</td>
-            <td>
-                <p-tag
-                    [severity]="client.isActive ? 'success' : 'warn'"
-                    [value]="client.isActive ? 'Active' : 'Inactive'"
-                    [rounded]="true"
-                ></p-tag>
+            <td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) |
+                number:'1.2-2' }}</td>
+            <td style="text-align:center;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
+            <td style="text-align:center;">
+                <p-tag [severity]="client.isActive ? 'success' : 'warn'"
+                    [value]="client.isActive ? 'Active' : 'Inactive'" [rounded]="true"></p-tag>
             </td>
-            <td>
-                <p-button 
-                    icon="pi pi-pencil" 
-                    severity="info" 
-                    size="small"
-                    (onClick)="onEdit(client, rowIndex)"
-                    [outlined]="true"
-                    class="mr-2"
-                >
+            <td style="text-align:center;">
+                <p-button icon="pi pi-pencil" severity="info" size="small" (onClick)="onEdit(client, rowIndex)"
+                    [outlined]="true" class="mr-2">
                 </p-button>
-                <p-button 
-                    icon="pi pi-trash" 
-                    severity="danger" 
-                    size="small"
-                    (onClick)="onDelete(rowIndex)"
-                    [outlined]="true"
-                >
+                <p-button icon="pi pi-trash" severity="danger" size="small" (onClick)="onDelete(rowIndex)"
+                    [outlined]="true">
                 </p-button>
             </td>
+        </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+        <tr>
+            <td colspan="9" style="text-align:center; vertical-align:middle;">No customers found.</td>
         </tr>
     </ng-template>
 </p-table>
