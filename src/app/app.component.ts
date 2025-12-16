@@ -11,9 +11,9 @@ import { PrimeNgSharedModule } from './shared/primeng-shared.module';
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    ClientFormComponent, 
-    ClientTableComponent, 
+    RouterOutlet,
+    ClientFormComponent,
+    ClientTableComponent,
     PrimeNgSharedModule
   ],
   providers: [
@@ -26,11 +26,9 @@ export class AppComponent implements OnInit {
   title = 'Angular & PrimeNG Sample Project';
   clients: Client[] = [];
 
-  // 2. The New Way: Inject services as properties
+  // The New Way: Inject services as properties
   private messageService = inject(MessageService);
   private clientsService = inject(ClientsService);
-
-  constructor() {}
 
   async ngOnInit(): Promise<void> {
     await this.loadClients();

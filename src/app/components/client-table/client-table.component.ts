@@ -1,7 +1,7 @@
-import { Component, input, output, EventEmitter } from '@angular/core';
+import { Component, input, output, inject } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Client } from '../../client';
 import { ClientType } from '../../client-type';
 import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
@@ -14,28 +14,28 @@ import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
     ReactiveFormsModule,
     PrimeNgSharedModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './client-table.component.html',
   styleUrl: './client-table.component.scss'
 })
 export class ClientTableComponent {
-  // @Input() clientEntries: Client[] = [];
   clientEntries = input<Client[]>([]);
-  // @Output() clientDeleted = new EventEmitter<number>();
   clientDeleted = output<number>();
-  // @Output() clientUpdated = new EventEmitter<{ index: number; client: Client }>();
   clientUpdated = output<{ index: number; client: Client }>();
+  // @Input() clientEntries: Client[] = [];
+  // @Output() clientDeleted = new EventEmitter<number>();
+  // @Output() clientUpdated = new EventEmitter<{ index: number; client: Client }>();
 
   displayEditDialog = false;
   editingIndex: number | null = null;
   editingClientId: number | undefined;
 
   clientTypes: ClientType[] = [
-    { 
+    {
       label: 'Individual',
       value: 'Individual'
     },
-    { 
+    {
       label: 'Business',
       value: 'Business'
     }
@@ -52,7 +52,8 @@ export class ClientTableComponent {
     registrationDate: new FormControl<Date | null>(null, [Validators.required])
   });
 
-  constructor(private messageService: MessageService) {}
+  private messageService = inject(MessageService);
+  private confirmationService = inject(ConfirmationService);
 
   onEdit(client: Client, index: number): void {
     this.editingIndex = index;
@@ -70,8 +71,33 @@ export class ClientTableComponent {
     this.displayEditDialog = true;
   }
 
-  onDelete(index: number): void {
-    this.clientDeleted.emit(index);
+  confirmDelete(event: Event, index: number) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this record?',
+      icon: 'pi pi-info-circle',
+      acceptButtonProps: {
+        label: 'Delete',
+        severity: 'danger',
+      },
+      rejectButtonProps: {
+        label: 'Cancel',
+        severity: 'secondary',
+        outlined: true
+      },
+      accept: () => {
+        this.clientDeleted.emit(index);
+      },
+      reject: () => {
+        // Optional: User clicked cancel
+        // this.messageService.add({ 
+        //     severity: 'info', 
+        //     summary: 'Cancelled', 
+        //     detail: 'Delete cancelled', 
+        //     life: 3000 
+        // });
+      }
+    });
   }
 
   saveEdit(): void {

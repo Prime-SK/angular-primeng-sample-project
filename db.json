@@ -45,17 +45,6 @@
       "id": "6069"
     },
     {
-      "name": "mata ba",
-      "email": "mb@gmail.com",
-      "phone": "0715564544",
-      "bankBalance": 45645,
-      "outstandingLoan": 10002,
-      "clientType": "Individual",
-      "isActive": true,
-      "registrationDate": "2024-12-14T18:30:00.000Z",
-      "id": "7d65"
-    },
-    {
       "id": "eca3",
       "name": "jack son",
       "email": "js@gmail.com",
@@ -63,6 +52,17 @@
       "bankBalance": 7894544,
       "outstandingLoan": 4555,
       "clientType": "Business",
+      "isActive": true,
+      "registrationDate": "2025-12-06T18:30:00.000Z"
+    },
+    {
+      "id": "275e",
+      "name": "shashith rashmika",
+      "email": "sr@gmail.com",
+      "phone": "0756454565",
+      "bankBalance": 4545444,
+      "outstandingLoan": 7,
+      "clientType": "Individual",
       "isActive": true,
       "registrationDate": "2025-12-06T18:30:00.000Z"
     }

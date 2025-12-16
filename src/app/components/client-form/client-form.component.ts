@@ -17,8 +17,8 @@ import { PrimeNgSharedModule } from '../../shared/primeng-shared.module';
   styleUrl: './client-form.component.scss'
 })
 export class ClientFormComponent {
-  // @Output() clientSubmitted = new EventEmitter<Client>();
   clientSubmitted = output<Client>();
+  // @Output() clientSubmitted = new EventEmitter<Client>();
 
   clientTypes: ClientType[] = [
     { label: 'Individual', value: 'Individual' },

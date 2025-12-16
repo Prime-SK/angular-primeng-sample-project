@@ -4,31 +4,21 @@
       <div class="form-grid">
         <!-- Name Field -->
         <div class="field">
-        <p-floatlabel variant="on">
-          <label for="name">Name <span class="r-star">*</span></label>
-          <input
-            id="name"
-            type="text"
-            pInputText
-            formControlName="name"
-          />
-        </p-floatlabel>
-        <small class="error-message" *ngIf="isFieldInvalid('name')">
-          {{ getErrorMessage('name') }}
-        </small>
-      </div>
+          <p-floatlabel variant="on">
+            <label for="name">Name <span class="r-star">*</span></label>
+            <input id="name" type="text" pInputText formControlName="name" />
+          </p-floatlabel>
+          <small class="error-message" *ngIf="isFieldInvalid('name')">
+            {{ getErrorMessage('name') }}
+          </small>
+        </div>
 
         <!-- Email Field -->
         <div class="field">
-        <p-floatlabel variant="on">
-          <label for="email">Email <span class="r-star">*</span></label>
-          <input
-            id="email"
-            type="email"
-            pInputText
-            formControlName="email"
-          />
-        </p-floatlabel>
+          <p-floatlabel variant="on">
+            <label for="email">Email <span class="r-star">*</span></label>
+            <input id="email" type="email" pInputText formControlName="email" />
+          </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('email')">
             {{ getErrorMessage('email') }}
           </small>
@@ -36,16 +26,10 @@
 
         <!-- Phone Field -->
         <div class="field">
-        <p-floatlabel variant="on">
-          <label for="phone">Phone <span class="r-star">*</span></label>
-          <input
-            id="phone"
-            type="text"
-            pInputText
-            pKeyFilter="num"
-            formControlName="phone"
-          />
-        </p-floatlabel>
+          <p-floatlabel variant="on">
+            <label for="phone">Phone <span class="r-star">*</span></label>
+            <input id="phone" type="text" pInputText pKeyFilter="num" formControlName="phone" />
+          </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('phone')">
             {{ getErrorMessage('phone') }}
           </small>
@@ -54,32 +38,21 @@
         <!-- Client Type Dropdown -->
         <div class="field">
           <p-floatlabel variant="on">
-						<p-select 
-						inputId="clientType" 
-						[options]="clientTypes" 
-						formControlName="clientType"
-						optionLabel="label" 
-						optionValue="value"
-						/>
-						<label for="clientType">Client Type <span class="r-star">*</span></label>
+            <p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
+              optionValue="value" />
+            <label for="clientType">Client Type <span class="r-star">*</span></label>
           </p-floatlabel>
-            <small class="error-message" *ngIf="isFieldInvalid('clientType')">
-              {{ getErrorMessage('clientType') }}
-            </small>
+          <small class="error-message" *ngIf="isFieldInvalid('clientType')">
+            {{ getErrorMessage('clientType') }}
+          </small>
         </div>
 
         <!-- Bank Balance Field -->
         <!-- [inputStyle]="{'text-align' : 'right'}" -->
         <div class="field">
           <p-floatlabel variant="on">
-            <p-inputNumber
-            inputId="bankBalance"
-            formControlName="bankBalance"
-            mode="currency"
-            currency="LKR"
-            locale="en-US"
-            
-            />
+            <p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="LKR"
+              locale="en-US" />
             <label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
           </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
@@ -90,13 +63,8 @@
         <!-- Outstanding Loan Field -->
         <div class="field">
           <p-floatlabel variant="on">
-            <p-inputNumber
-            inputId="outstandingLoan"
-            formControlName="outstandingLoan"
-            mode="currency"
-            currency="LKR"
-            locale="en-US"
-            />
+            <p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="LKR"
+              locale="en-US" />
             <label for="outstandingLoan">Outstanding Loan</label>
           </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
@@ -106,14 +74,9 @@
 
         <!-- Registration Date Field -->
         <div class="field">
-				  <p-floatlabel variant="on">
-            <p-datepicker  
-              inputId="registrationDate" 
-              formControlName="registrationDate"
-              showIcon 
-              iconDisplay="input"
-              dateFormat="dd/mm/yy"
-            />
+          <p-floatlabel variant="on">
+            <p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
+              dateFormat="dd/mm/yy" />
             <label for="registrationDate">Registration Date <span class="r-star">*</span></label>
           </p-floatlabel>
           <small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
@@ -124,32 +87,17 @@
         <!-- Is Active Checkbox -->
         <div class="field checkbox-field">
           <div style="padding-top: 0.5rem; display: flex; gap: 0.5rem;">
-            <label for="isActive" >Active</label>
-            <p-checkbox
-              inputId="isActive"
-              formControlName="isActive"
-              [binary]="true"
-              label="Is Active"
-            />
+            <label for="isActive">Active</label>
+            <p-checkbox inputId="isActive" formControlName="isActive" [binary]="true" label="Is Active" />
           </div>
         </div>
       </div>
 
       <!-- Action Buttons -->
       <div class="button-group">
-        <p-button
-          label="Submit"
-          icon="pi pi-check"
-          type="submit"
-          [disabled]="clientForm.invalid"
-        ></p-button>
-        <p-button
-          label="Reset"
-          icon="pi pi-refresh"
-          type="button"
-          severity="secondary"
-          (onClick)="handleReset()"
-        ></p-button>
+        <p-button label="Submit" icon="pi pi-check" type="submit" [disabled]="clientForm.invalid"></p-button>
+        <p-button label="Reset" icon="pi pi-refresh" type="button" severity="secondary"
+          (onClick)="handleReset()"></p-button>
       </div>
     </form>
   </p-card>

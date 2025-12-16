@@ -5,7 +5,7 @@
 	[paginator]="true" 
 	[rows]="5"
 	[rowsPerPageOptions]="[5, 10, 20]" 
-	[globalFilterFields]="['name', 'email', 'phone', 'clientType', 'isActive']"
+	[globalFilterFields]="['name', 'email', 'phone', 'clientType']"
 >
 	<ng-template pTemplate="caption">
 		<div class="table-header">
@@ -13,8 +13,7 @@
 			<p-iconfield iconPosition="left">
 				<p-inputicon styleClass="pi pi-search" />
 				<input 
-					pInputText 
-					type="text" 
+					pInputText type="text" 
 					(input)="dt.filterGlobal($any($event.target).value, 'contains')"
 					placeholder="Search..." 
 				/>
@@ -27,13 +26,11 @@
 			<th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
 			<th pSortableColumn="email">Email <p-sortIcon field="email" /></th>
 			<th style="text-align:center;">Phone</th>
-			<th style="text-align:center;" pSortableColumn="clientType">Type <p-sortIcon field="clientType" /></th>
-			<th style="text-align: right;" pSortableColumn="bankBalance">Balance <p-sortIcon field="bankBalance" /></th>
-			<th style="text-align: right;" pSortableColumn="outstandingLoan">Overdraft <p-sortIcon field="outstandingLoan" />
-			</th>
-			<th style="text-align:right;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" />
-			</th>
-			<th style="text-align:center;" pSortableColumn="isActive">Status <p-sortIcon field="isActive" /></th>
+			<th pSortableColumn="clientType" style="text-align:center;">Type <p-sortIcon field="clientType" /></th>
+			<th pSortableColumn="bankBalance" style="text-align: right;">Balance <p-sortIcon field="bankBalance" /></th>
+			<th pSortableColumn="outstandingLoan"  style="text-align: right;">Overdraft <p-sortIcon field="outstandingLoan" /></th>
+			<th pSortableColumn="registrationDate" style="text-align:right;">Date <p-sortIcon field="registrationDate" /></th>
+			<th style="text-align:center;">Status <p-sortIcon field="isActive" /></th>
 			<th style="text-align:center;">Actions</th>
 		</tr>
 	</ng-template>
@@ -42,13 +39,12 @@
 		<tr>
 			<td>{{ client.name }}</td>
 			<td>{{ client.email }}</td>
-			<td style="text-align:center;">{{ client.phone }}</td>
-			<td style="text-align:center;">{{ client.clientType }}</td>
+			<td style="text-align: center;">{{ client.phone }}</td>
+			<td style="text-align: center;">{{ client.clientType }}</td>
 			<td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
-			<td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) |
-				number:'1.2-2' }}</td>
-			<td style="text-align:right;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
-			<td style="text-align:center;">
+			<td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) | number:'1.2-2' }}</td>
+			<td style="text-align: right;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
+			<td style="text-align: center;">
 				<p-tag 
 					[severity]="client.isActive ? 'success' : 'warn'" 
 					[value]="client.isActive ? 'Active' : 'Inactive'"
@@ -62,14 +58,15 @@
 					severity="info" 
 					size="small" 
 					(onClick)="onEdit(client, rowIndex)"
-					[outlined]="true" class="mr-2"
+					[outlined]="true"
 				>
 				</p-button>
+				<p-confirmPopup />
 				<p-button 
 					icon="pi pi-trash" 
 					severity="danger" 
 					size="small" 
-					(onClick)="onDelete(rowIndex)" 
+					(onClick)="confirmDelete($event, rowIndex)"
 					[outlined]="true"
 				>
 				</p-button>
@@ -132,8 +129,13 @@
 			<!-- Client Type Dropdown -->
 			<div class="field">
 				<p-floatlabel variant="on">
-					<p-select inputId="clientType" [options]="clientTypes" formControlName="clientType" optionLabel="label"
-						optionValue="value" />
+					<p-select 
+						inputId="clientType" 
+						[options]="clientTypes" 
+						formControlName="clientType" 
+						optionLabel="label"
+						optionValue="value"
+					/>
 					<label for="clientType">Client Type <span class="r-star">*</span></label>
 				</p-floatlabel>
 				<small class="error-message" *ngIf="isFieldInvalid('clientType')">
@@ -144,8 +146,13 @@
 			<!-- Bank Balance Field -->
 			<div class="field">
 				<p-floatlabel variant="on">
-					<p-inputNumber inputId="bankBalance" formControlName="bankBalance" mode="currency" currency="LKR"
-						locale="en-US" />
+					<p-inputNumber 
+						inputId="bankBalance" 
+						formControlName="bankBalance" 
+						mode="currency" 
+						currency="LKR"
+						locale="en-US"
+					/>
 					<label for="bankBalance">Bank Balance <span class="r-star">*</span></label>
 				</p-floatlabel>
 				<small class="error-message" *ngIf="isFieldInvalid('bankBalance')">
@@ -156,8 +163,13 @@
 			<!-- Outstanding Loan Field -->
 			<div class="field">
 				<p-floatlabel variant="on">
-					<p-inputNumber inputId="outstandingLoan" formControlName="outstandingLoan" mode="currency" currency="LKR"
-						locale="en-US" />
+					<p-inputNumber 
+						inputId="outstandingLoan" 
+						formControlName="outstandingLoan" 
+						mode="currency" 
+						currency="LKR"
+						locale="en-US"
+					/>
 					<label for="outstandingLoan">Outstanding Loan</label>
 				</p-floatlabel>
 				<small class="error-message" *ngIf="isFieldInvalid('outstandingLoan')">
@@ -168,8 +180,13 @@
 			<!-- Registration Date Field -->
 			<div class="field">
 				<p-floatlabel variant="on">
-					<p-datepicker inputId="registrationDate" formControlName="registrationDate" showIcon iconDisplay="input"
-						dateFormat="dd/mm/yy" />
+					<p-datepicker 
+						inputId="registrationDate" 
+						formControlName="registrationDate" 
+						showIcon 
+						iconDisplay="input"
+						dateFormat="dd/mm/yy"
+					/>
 					<label for="registrationDate">Registration Date <span class="r-star">*</span></label>
 				</p-floatlabel>
 				<small class="error-message" *ngIf="isFieldInvalid('registrationDate')">
@@ -187,8 +204,7 @@
 		<!-- Action Buttons -->
 		<div class="button-group" style="margin-top: 20px;">
 			<p-button label="Save" icon="pi pi-check" type="submit" [disabled]="editForm.invalid"></p-button>
-			<p-button label="Cancel" icon="pi pi-times" type="button" severity="secondary"
-				(onClick)="cancelEdit()"></p-button>
+			<p-button label="Cancel" icon="pi pi-times" type="button" severity="secondary" (onClick)="cancelEdit()"></p-button>
 		</div>
 	</form>
 </p-dialog>
