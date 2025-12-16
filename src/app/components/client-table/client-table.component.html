@@ -31,7 +31,7 @@
 			<th style="text-align: right;" pSortableColumn="bankBalance">Balance <p-sortIcon field="bankBalance" /></th>
 			<th style="text-align: right;" pSortableColumn="outstandingLoan">Overdraft <p-sortIcon field="outstandingLoan" />
 			</th>
-			<th style="text-align:center;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" />
+			<th style="text-align:right;" pSortableColumn="registrationDate">Date <p-sortIcon field="registrationDate" />
 			</th>
 			<th style="text-align:center;" pSortableColumn="isActive">Status <p-sortIcon field="isActive" /></th>
 			<th style="text-align:center;">Actions</th>
@@ -47,7 +47,7 @@
 			<td style="text-align: right;">Rs. {{ client.bankBalance | number:'1.2-2' }}</td>
 			<td style="text-align: right;">Rs. {{ (client.outstandingLoan != null ? client.outstandingLoan : 0) |
 				number:'1.2-2' }}</td>
-			<td style="text-align:center;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
+			<td style="text-align:right;">{{ client.registrationDate | date:'dd/MM/yyyy' }}</td>
 			<td style="text-align:center;">
 				<p-tag 
 					[severity]="client.isActive ? 'success' : 'warn'" 

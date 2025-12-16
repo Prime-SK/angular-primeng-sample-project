@@ -56,15 +56,15 @@
       "id": "6069"
     },
     {
-      "id": "7d65",
-      "name": "tommy shelby",
-      "email": "ts@gmail.com",
-      "phone": "0745868954",
-      "bankBalance": 45000,
-      "outstandingLoan": 450,
+      "name": "moda tharindu",
+      "email": "mt@gmail.com",
+      "phone": "0715454558",
+      "bankBalance": 45645,
+      "outstandingLoan": 12,
       "clientType": "Individual",
-      "isActive": true,
-      "registrationDate": "2025-11-30T18:30:00.000Z"
+      "isActive": false,
+      "registrationDate": "2024-12-14T18:30:00.000Z",
+      "id": "7d65"
     }
   ]
 }

@@ -5,7 +5,7 @@ export interface Client {
   phone: string | null;
   bankBalance: number | null;
   outstandingLoan: number | null;
-  clientType: null | string;
+  clientType: "Individual" | "Business" | null;
   registrationDate: Date | null;
   isActive: boolean | null;
 }
