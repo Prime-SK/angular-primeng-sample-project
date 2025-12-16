@@ -80,6 +80,7 @@ export class AppComponent implements OnInit {
         try {
           await this.clientsService.deleteClient(client.id);
           this.clients = this.clients.filter((_, i) => i !== index);
+          console.log('Client deleted. Remaining clients:', this.clients);
           this.messageService.add({
             severity: 'success',
             summary: 'Success',

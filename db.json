@@ -12,26 +12,15 @@
       "id": "dcd2"
     },
     {
-      "name": "gas labu",
-      "email": "gas@gmail.com",
-      "phone": "0722264211",
-      "bankBalance": 789000,
-      "outstandingLoan": 67,
-      "clientType": "Business",
-      "isActive": false,
-      "registrationDate": "2025-12-13T18:30:00.000Z",
-      "id": "3d99"
-    },
-    {
-      "id": "a1ee",
       "name": "moda tharindu",
       "email": "mt@gmail.com",
       "phone": "0715454558",
-      "bankBalance": 45645,
+      "bankBalance": 4645,
       "outstandingLoan": 12,
-      "clientType": "Individual",
-      "isActive": true,
-      "registrationDate": "2024-12-14T18:30:00.000Z"
+      "clientType": "Business",
+      "isActive": false,
+      "registrationDate": "2024-12-14T18:30:00.000Z",
+      "id": "a1ee"
     },
     {
       "id": "8a28",
@@ -56,15 +45,26 @@
       "id": "6069"
     },
     {
-      "name": "moda tharindu",
-      "email": "mt@gmail.com",
-      "phone": "0715454558",
+      "name": "mata ba",
+      "email": "mb@gmail.com",
+      "phone": "0715564544",
       "bankBalance": 45645,
-      "outstandingLoan": 12,
+      "outstandingLoan": 10002,
       "clientType": "Individual",
-      "isActive": false,
+      "isActive": true,
       "registrationDate": "2024-12-14T18:30:00.000Z",
       "id": "7d65"
+    },
+    {
+      "id": "eca3",
+      "name": "jack son",
+      "email": "js@gmail.com",
+      "phone": "0712356545",
+      "bankBalance": 7894544,
+      "outstandingLoan": 4555,
+      "clientType": "Business",
+      "isActive": true,
+      "registrationDate": "2025-12-06T18:30:00.000Z"
     }
   ]
 }

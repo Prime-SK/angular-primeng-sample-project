@@ -16,6 +16,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { CardModule } from 'primeng/card';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   // We only need 'exports'. We don't need 'imports' or 'declarations'.
@@ -35,7 +36,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     IconFieldModule,
     InputIconModule,
     CardModule,
-    KeyFilterModule
+    KeyFilterModule,
+    ConfirmPopupModule
   ]
 })
 export class PrimeNgSharedModule { }
